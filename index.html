@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
+  <meta name="description" content="Geovisual Analytic Platform for TWCA">
   <meta name="author" content="Bo Zhao, Benji Antolin">
   <title>Water Calculator</title>
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
@@ -85,12 +85,15 @@
       'Satellite': satellite
     }
 
-    var soil, guage;
+    var soil, guage, hardness;
     Promise.all([
       d3.json("assets/soil.json")
     ]).then(function(datasets) {
 
-
+      hardness = L.tileLayer('assets/hardness/{z}/{x}/{y}.png', {
+        maxZoom: 7,
+        tms: false
+      }).addTo(mymap);
       soil = new L.TopoJSON(datasets[0], {
         style: myStyle,
         onEachFeature: onEachFeature
@@ -100,7 +103,8 @@
 
       var overlays = {
         "<span>Place Names</span>": L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}@2x.png'),
-        "<span>Soil</span>": soil
+        "<span>Soil</span>": soil,
+        "<span>Soil</span>": hardness
       };
 
       L.control.layers(baseLayers, overlays, {

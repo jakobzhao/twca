@@ -1,0 +1,206 @@
+<!DOCTYPE METADATA PUBLIC "-//FGDC//DTD METADATA 2.0//EN">
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>The PRISM Climate Group, Oregon State University</origin>
+<pubdate>2009</pubdate>
+<title>1976-2005 Official USDA Plant Hardiness Zone Map</title>
+<geoform>vector digital data</geoform>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This data set represents the Approved USDA Plant Hardiness Zone Map for the 1976-2005 period in shapefile format.  The data set was created by assembling high quality station data of 30-year mean annual extreme minimum temperatures, quality control checks of the station data, interpolation of that data using the PRISM modeling system, and conversion of model output to plant hardiness zones.</abstract>
+<purpose>Develop an approved, updated USDA-ARS Plant Hardiness Zone Map (PHZM) with a goal of meeting modern standards of geostatistical analysis and data resolution.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<rngdates>
+<begdate>1976</begdate>
+<enddate>2005</enddate>
+</rngdates>
+</timeinfo>
+<current>ground condition</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-124.812500</westbc>
+<eastbc>-66.912500</eastbc>
+<northbc>49.429167</northbc>
+<southbc>24.462500</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>Olsen, L.M., G. Major, K. Shein, J. Scialdone, R. Vogel, S. Leicester, H. Weir, S. Ritz, T. Stevens, M. Meaux, C.Solomon, R. Bilodeau, M. Holland, T. Northcutt, R. A. Restrepo, 2007 . NASA/Global Change Master Directory (GCMD) Earth Science Keywords. Version 6.0.0.0.0</themekt>
+<themekey>vegetation index</themekey>
+<themekey>minimum temperature</themekey>
+</theme>
+</keywords>
+<accconst>Access pursuant to license agreement.</accconst>
+<useconst>Data: GIS data such as grids and shapefiles may be downloaded by U.S. Government users for U.S. Government purposes only and may not be distributed to non-U.S. Governmental users. Non-U.S. Government users may obtain enhanced (high resolution) official USDA Plant Hardiness GIS data in shapefile and raster grid formats from Climate Source, Inc. (http://www.climatesource.com/PHZM/gis_data.html), subject to Climate Source terms of use.  The USDA-ARS and OSU (Oregon State University) logos must be prominently displayed on any maps derived from the GIS datasets, and USDA-ARS and OSU must be acknowledged on any derived datasets. The data may not be altered in any way without an explicit and prominently displayed disclaimer that the map is not the official USDA Plant Hardiness Zone Map, and USDA-ARS and OSU logos must not be displayed in the modified version.</useconst>
+<native>Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 3; ESRI ArcCatalog 9.3.1.1850</native>
+</idinfo>
+<dataqual>
+<logic>Polygon topology exists</logic>
+<complete>Completed</complete>
+<lineage>
+<procstep>
+<procdesc>Create a spatial grid of 30-year mean annual extreme minimum temperature from station observations using the PRISM modeling system at Oregon State University.</procdesc>
+<procdate>2009</procdate>
+</procstep>
+<procstep>
+<procdesc>Reclassify the temperatures into integer values representing plant hardiness zones.</procdesc>
+<procdate>2009</procdate>
+</procstep>
+<procstep>
+<procdesc>Add description for each reclassed zone that describes the zone and temperature range encompassed within that zone.</procdesc>
+<procdate>2009</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>G-polygon</sdtstype>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<spref>
+<horizsys>
+<geograph>
+<latres>0.0083333333333</latres>
+<longres>0.0083333333333</longres>
+<geogunit>Decimal degrees</geogunit>
+</geograph>
+<geodetic>
+<horizdn>North American Datum of 1983</horizdn>
+<ellips>Geodetic Reference System 80</ellips>
+<semiaxis>6378137.000000</semiaxis>
+<denflat>298.257222</denflat>
+</geodetic>
+</horizsys>
+</spref>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>plant_hardiness</enttypl>
+<enttypd>Plant hardiness zone values</enttypd>
+<enttypds>USDA-ARS</enttypds>
+</enttyp>
+<attr>
+<attrlabl>FID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GRIDCODE</attrlabl>
+<attrdef>Reclassification of temperatures into continuous range of plant hardiness zones</attrdef>
+<attrdefs>PRISM Climate Group</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ZONE</attrlabl>
+<attrdef>Assignment of GRIDCODE to actual plant hardiness zones with descriptions</attrdef>
+<attrdefs>PRISM Climate Group</attrdefs>
+<attrdomv>
+<udom>Text description of zones assigned from GRIDCODE</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>Agricultural Research Service, United States Department of Agriculture</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing address</addrtype>
+<address>
+USDA, George Washington Carver Center
+5601 Sunnyside Avenue
+</address>
+<city>Beltsville</city>
+<state>MD</state>
+<postal> 20705</postal>
+<country>USA</country>
+</cntaddr>
+<cntvoice>Contact_Voice_Telephone</cntvoice>
+<cntemail>phzm@ars.usda.gov</cntemail>
+</cntinfo>
+</distrib>
+<resdesc>Downloadable Data</resdesc>
+<distliab>No warranty is made by the producer/distributor as to the accuracy, reliability, or completeness of these data for individual use or aggregate use with other data.</distliab>
+<stdorder>
+<digform>
+<digtinfo>
+<formname>Shapefile</formname>
+</digtinfo>
+<digtopt>
+<onlinopt>
+<computer>
+<networka>
+<networkr>Instant download</networkr>
+</networka>
+</computer>
+</onlinopt>
+</digtopt>
+</digform>
+<fees>None</fees>
+</stdorder>
+</distinfo>
+<metainfo>
+<metd>20091026</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>The PRISM Climate Group</cntorg>
+<cntper>Wayne Gibson</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical address</addrtype>
+<address>Oregon State University</address>
+<address>2001 Kelley Engineering Center</address>
+<city>Corvallis</city>
+<state>Oregon</state>
+<postal>97331</postal>
+</cntaddr>
+<cntvoice>541-737-2531</cntvoice>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+<metextns>
+<onlink>http://www.esri.com/metadata/esriprof80.html</onlink>
+<metprof>ESRI Metadata Profile</metprof>
+</metextns>
+</metainfo>
+</metadata>
