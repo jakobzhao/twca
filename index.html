@@ -7,19 +7,24 @@
   <meta name="description" content="">
   <meta name="author" content="Bo Zhao, Benji Antolin">
   <title>Water Calculator</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.14/c3.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
   <link rel="stylesheet" href="css/main.css">
-  <!-- <link rel="icon" href="img/favicon.ico" type="image/x-icon" /> -->
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
   <script src="https://unpkg.com/d3@5/dist/d3.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.14/c3.min.js"></script>
-  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
   <script src="https://d3js.org/topojson.v1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.14/c3.min.js"></script>
+
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
   <script src="js/L.TopoJSON.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.3.4/chroma.min.js"></script>
@@ -30,8 +35,8 @@
   <main>
     <div class="loader"></div>
     <div id="info" class="d-flex align-items-start flex-column">
-      <h4><i class="fas fa-paw dam"></i> Beaver Activities</h4>
-      <div id="dams" style="min-height: 150px"></div>
+      <h4><i class="fas fa-tachometer-alt"></i> Water Calculator</h4>
+      <div id="waterGauge" style="min-height: 150px"></div>
     </div>
     <div id="map" role="main" class="container-fluid"></div>
   </main>
@@ -66,7 +71,6 @@
 
 
     $(".leaflet-control-attribution")
-      // .css("bottom", "60px")
       .css("background-color", "transparent")
       .html("Supported by <a href='http://geoviz.ceoas.oregonstate.edu' target='_blank'> GeoViz Lab @ Oregon State University </a>");
 
@@ -87,7 +91,6 @@
     ]).then(function(datasets) {
 
 
-
       soil = new L.TopoJSON(datasets[0], {
         style: myStyle,
         onEachFeature: onEachFeature
@@ -105,6 +108,24 @@
       }).addTo(mymap);
 
     });
+
+
+    var geocoder = L.Control.geocoder({
+        defaultMarkGeocode: false,
+        placeholder: "Search a location...",
+        errorMessage: "Nothing was Found..."
+      })
+      .on('markgeocode', function(e) {
+        var bbox = e.geocode.bbox;
+        var poly = L.polygon([
+          bbox.getSouthEast(),
+          bbox.getNorthEast(),
+          bbox.getNorthWest(),
+          bbox.getSouthWest()
+        ]).addTo(mymap);
+        mymap.fitBounds(poly.getBounds());
+      })
+      .addTo(mymap);
   </script>
 </body>
 
