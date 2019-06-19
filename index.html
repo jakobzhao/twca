@@ -146,7 +146,7 @@
         }
 
         h = hardness.getValueAtLatLng(e.latlng.lat, e.latlng.lng).toFixed(0);
-        h100 = (h * 100 / (22 - 4)).toFixed(0);
+        h100 = ((h - 4) * 100 / (22 - 4)).toFixed(0);
         $("#hardnessLevel").html(h100);
         chart.load({
           columns: [
@@ -299,7 +299,7 @@
 
 
         h = hardness.getValueAtLatLng(lat, lng).toFixed(0);
-        h100 = (h * 100 / (22 - 4)).toFixed(0);
+        h100 = ((h - 4) * 100 / (22 - 4)).toFixed(0);
         $("#hardnessLevel").html(h100);
         chart.load({
           columns: [
@@ -308,7 +308,7 @@
         });
 
         var results = leafletPip.pointInLayer([lng, lat], soil);
-        s = + results[0].feature.properties.class;
+        s = +results[0].feature.properties.class;
         $("#soilClass").html(s);
 
 
