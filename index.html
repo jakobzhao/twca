@@ -39,11 +39,14 @@
   <main>
     <div class="loader"></div>
     <div id="info" class="d-flex align-items-start flex-column">
-      <h4><i class="fas fa-tachometer-alt"></i> Water Calculator</h4>
+      <h2><i class="fas fa-tachometer-alt"></i> Water Calculator</h2>
+      <!-- <div id="greenGauge" style="min-height: 150px"></div> -->
       <div id="waterGauge" style="min-height: 150px"></div>
-      <p>Plant Hardness: <span id="hardnessLevel"></span></p>
-      <p>Soil Class: <span id="soilClass"></span></p>
-      <p>Test Value: <span id="test"></span></p>
+      <p><b>Plant Hardness:</b> <span id="hardnessLevel"></span></p>
+      <p><b>Soil Class:</b> <span id="soilClass"></span></p>
+      <p><b>Rain Volume:</b> <span id="rainVolume"></span> 30 inches</p>
+      <p><b>Run Events:</b> <span id="run"></span> 3 events</p>
+      <p><b>Test Value:</b> <span id="test"></span></p>
     </div>
     <div id="map" role="main" class="container-fluid"></div>
   </main>
@@ -51,6 +54,7 @@
     $(window).ready(function() {
       $('.loader').fadeOut("slow");
     });
+
 
     var mymap = L.map('map', {
       zoomControl: false,
@@ -165,9 +169,9 @@
 
 
       var overlays = {
-        "<span>Place Names</span>": placename,
-        "<span>Soil Class</span>": soil,
-        "<span>Plant Hardness</span>": hardness,
+        "<span><b>Place Names</b></span>": placename,
+        "<span><b>Soil Class</b></span>": soil,
+        "<span><b>Plant Hardness</b></span>": hardness,
       };
 
       L.control.layers(baseLayers, overlays, {
@@ -309,6 +313,8 @@
 
 
         $("#test").html(s * h100);
+
+        mymap.setZoom(10);
 
 
 
