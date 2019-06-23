@@ -20,13 +20,6 @@ html, body,main
   opacity: 1;
 }
 
-
-#popup {
-    height : 50px;
-    z-index: 9999;
-    background-color:blue;
-}
-
 #map  {
   position:relative;
   width: 100%;
