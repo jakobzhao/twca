@@ -182,33 +182,24 @@
       }
     ).addTo(hardGroup);
 
-    var turfZones = L.geoJson.ajax('assets/turfZones.geojson', {
-      // style: style2,
-      onEachFeature: function(feature, layer) {
-        layer.bindTooltip(feature.properties.zone, {
-          className: 'feature-label',
-          permanent: false,
-          direction: 'center'
-        });
-      }
-    });
-
-    var rainStates = L.geoJson.ajax('assets/rainStates.geojson', {
-      // style: style2,
-      onEachFeature: function(feature, layer) {
-        layer.bindTooltip(feature.properties.NAME, {
-          className: 'feature-label',
-          permanent: false,
-          direction: 'center'
-        });
-      }
-    });
+    // var turfZones = L.geoJson.ajax('assets/turfZones.geojson', {
+    //   // style: style2,
+    //   onEachFeature: function(feature, layer) {
+    //     layer.bindTooltip(feature.properties.zone, {
+    //       className: 'feature-label',
+    //       permanent: false,
+    //       direction: 'center'
+    //     });
+    //   }
+    // });
 
     placename = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}@2x.png').addTo(mymap);
 
 
     Promise.all([
-      d3.json("assets/soil.json")
+      d3.json("assets/soil.json"),
+      d3.json("assets/rainStates.geojson"),
+      d3.json("assets/turfZones.geojson"),
     ]).then(function(datasets) {
 
 
@@ -223,6 +214,31 @@
             break;
           case 2:
             c = "green";
+            break;
+          default:
+            c = "red";
+        }
+        return {
+          fillColor: c,
+          fillOpacity: 0.4,
+          color: "grey",
+          weight: 0.1,
+          opacity: 0,
+          smoothFactor: 0
+        };
+      };
+
+      function turfStyle(feature) {
+        var c = "red";
+        switch (+feature.properties.zoneID) {
+          case 0:
+            c = "blue";
+            break;
+          case 1:
+            c = "yellow";
+            break;
+          case 2:
+            c = "red";
             break;
           default:
             c = "red";
@@ -274,6 +290,33 @@
         onEachFeature: onEachFeature
       }).addTo(mymap);
 
+      rainStates = L.geoJSON(datasets[1], {
+        onEachFeature: function(feature, layer) {
+          layer.bindTooltip(feature.properties.NAME, {
+            className: 'feature-label',
+            permanent: false,
+            direction: 'center'
+          });
+        },
+        style: {
+          opacity: 0.8,
+          fillOpacity: 0,
+          weight: 2,
+          color: "brown",
+          dashArray: '6',
+        }
+      });
+
+      turfZones = L.geoJSON(datasets[2], {
+        onEachFeature: function(feature, layer) {
+          layer.bindTooltip(feature.properties.zone, {
+            className: 'feature-label',
+            permanent: false,
+            direction: 'center'
+          });
+        },
+        style: turfStyle,
+      });
 
       var overlays = {
         "<span><b>Place Names</b></span>": placename,
