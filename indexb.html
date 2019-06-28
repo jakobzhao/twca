@@ -16,6 +16,50 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <style>
+    .fa-info-circle:hover {
+      opacity: 0.3;
+    }
+
+    .fa-info-circle {
+      color: white;
+      font-size: 20px;
+    }
+
+    .fa-map-marked-alt:hover {
+      opacity: 0.3;
+    }
+
+    .fa-map-marked-alt {
+      color: white;
+      font-size: 20px;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background-color: #343a40;
+      border-color: #007bff;
+    }
+
+    .btn {
+      display: inline-block;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      border: 1px solid transparent;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: .25rem;
+      transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+  </style>
   <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -41,18 +85,95 @@
 </head>
 
 <body>
+  <header>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container-fluid d-flex justify-content-between">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <strong><i class="fas fa-tachometer-alt"></i> Water Calculator</strong>
+        </a>
+        <ul>
+          <li><a class="nav-link" href="#"><i class="fas fa-map-marked-alt"></i></a></li>
+          <li><a class="nav-link" href="#"><i class="fas fa-info-circle"></i></a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </header>
+
   <main>
     <div class="loader"></div>
-    <div id="popup" style="display:none"></div>
-    <div id="info" class="d-flex align-items-start flex-column">
-      <h2><i class="fas fa-tachometer-alt"></i> Water Calculator</h2>
+
+    <div id="sidebar">
+      <br>
+      <h4>Select Lush Level</h4>
+      <div class="btn-group btn-group-sm">
+        <button type="button" class="btn btn-primary">
+          <img src="img/twcaLogo.png" class="img-thumbnail" alt="professional">
+          <br>Professional</button>
+        <button type="button" class="btn btn-primary">
+          <img src="img/twcaLogo.png" class="img-thumbnail" alt="premium">
+          <br>Premium</button>
+        <button type="button" class="btn btn-primary">
+          <img src="img/twcaLogo.png" class="img-thumbnail" alt="homeowner">
+          <br>Homeowner</button>
+        <button type="button" class="btn btn-primary">
+          <img src="img/twcaLogo.png" class="img-thumbnail" alt="adequate">
+          <br>Adequate</button>
+        <button type="button" class="btn btn-primary">
+          <img src="img/twcaLogo.png" class="img-thumbnail" alt="survival">
+          <br>Survival</button>
+      </div>
+      <div id="popup" style="display:none"></div>
+      <!-- <div id="info" class="d-flex align-items-start flex-column"> -->
       <!-- <div id="greenGauge" style="min-height: 150px"></div> -->
+      <p><b>(Pr) Precip Runtime (minutes): &nbsp;</b> <span id="runtime">
+          <input type="number" name="quantity"><br>
+        </span></p>
+      <p><b>(R) Run Events/Week: &nbsp;</b> <span id="run">
+          <select>
+            <option value="0">Select runs/week:</option>
+            <option value="1">0 runs</option>
+            <option value="2">1 run</option>
+            <option value="3">2 runs</option>
+            <option value="4">3 runs</option>
+            <option value="5">4 runs</option>
+            <option value="6">5 runs</option>
+          </select></span>
+      </p>
+      <p><b>(ET) Evapotranspiration:</b> <span id="et"></span></p>
       <div id="waterGauge" style="min-height: 150px"></div>
       <p><b>Plant Hardness:</b> <span id="hardnessLevel"></span></p>
-      <p><b>Soil Class:</b> <span id="soilClass"></span></p>
-      <p><b>Rain Volume:</b> <span id="rainVolume"></span> 30 inches</p>
-      <p><b>Run Events:</b> <span id="run"></span> 3 events</p>
+      <p><b>(Sf) Soil Class:</b> <span id="soilClass"></span></p>
+      <p><b>(Kc) Turf Zone:</b> <span id="hardnessLevel"></span></p>
+      <p><b>(Cpf) Cultivar plan factor: &nbsp;</b> <span id="spf">
+        <select>
+          <option value="0">Select:</option>
+          <option value="1">Yes</option>
+          <option value="2">No</option>
+        </select
+      </span></p>
+      <p><b>(Pe) Rain Volume: &nbsp;</b>
+        <span id="rainVolume">
+          <select>
+            <option value="0">Select month:</option>
+            <option value="1">Jan</option>
+            <option value="2">Feb</option>
+            <option value="3">Mar</option>
+            <option value="4">Apr</option>
+            <option value="5">May</option>
+            <option value="6">Jun</option>
+            <option value="7">Jul</option>
+            <option value="8">Aug</option>
+            <option value="9">Sep</option>
+            <option value="10">Oct</option>
+            <option value="11">Nov</option>
+            <option value="12">Dec</option>
+          </select>
+        </span>
+      </p>
       <p><b>Test Value:</b> <span id="test"></span></p>
+      <!-- </div> -->
     </div>
     <div id="map" role="main" class="container-fluid"></div>
   </main>
@@ -99,7 +220,7 @@
 
     var mymap = L.map('map', {
       zoomControl: false,
-      center: [42.29981, -101.93603],
+      center: [39.29981, -102.93603],
       zoom: 5,
       maxZoom: 16,
       minZoom: 1

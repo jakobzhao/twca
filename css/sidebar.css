@@ -1,0 +1,28 @@
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+#sidebar {
+    position:absolute;
+    /* left: -400px; */
+    width: 400px;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: 1000;
+    background: #343a40;
+    color: #fff;
+    transition: all 0.3s;
+    /* overflow-y: scroll; */
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+ul {
+    list-style-type: none;
+    height: 25px;
+}
+
+li {
+  float: left;
+}
