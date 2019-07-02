@@ -42,6 +42,10 @@
       border-color: #007bff;
     }
 
+    h4 {
+      text-align: center;
+    }
+
     .btn {
       display: inline-block;
       font-weight: 400;
@@ -58,6 +62,14 @@
       line-height: 1.5;
       border-radius: .25rem;
       transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .btn-group-sm>.btn,
+    .btn-sm {
+      padding: .25rem .5rem;
+      font-size: 11px;
+      line-height: 1.5;
+      border-radius: .2rem;
     }
   </style>
   <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
@@ -142,37 +154,35 @@
           </select></span>
       </p>
       <p><b>(ET) Evapotranspiration:</b> <span id="et"></span></p>
-      <div id="waterGauge" style="min-height: 150px"></div>
       <p><b>Plant Hardness:</b> <span id="hardnessLevel"></span></p>
       <p><b>(Sf) Soil Class:</b> <span id="soilClass"></span></p>
-      <p><b>(Kc) Turf Zone:</b> <span id="hardnessLevel"></span></p>
+      <p><b>(Kc) Turf Zone:</b> <span id="tzone"></span></p>
       <p><b>(Cpf) Cultivar plan factor: &nbsp;</b> <span id="spf">
-        <select>
-          <option value="0">Select:</option>
-          <option value="1">Yes</option>
-          <option value="2">No</option>
-        </select
-      </span></p>
-      <p><b>(Pe) Rain Volume: &nbsp;</b>
-        <span id="rainVolume">
           <select>
-            <option value="0">Select month:</option>
-            <option value="1">Jan</option>
-            <option value="2">Feb</option>
-            <option value="3">Mar</option>
-            <option value="4">Apr</option>
-            <option value="5">May</option>
-            <option value="6">Jun</option>
-            <option value="7">Jul</option>
-            <option value="8">Aug</option>
-            <option value="9">Sep</option>
-            <option value="10">Oct</option>
-            <option value="11">Nov</option>
-            <option value="12">Dec</option>
-          </select>
-        </span>
+            <option value="0">Select:</option>
+            <option value="1">Yes</option>
+            <option value="2">No</option>
+          </select </span> </p> <p><b>(Pe) Rain Volume: &nbsp;</b>
+          <span id="rainVolume">
+            <select>
+              <option value="0">Select month:</option>
+              <option value="1">Jan</option>
+              <option value="2">Feb</option>
+              <option value="3">Mar</option>
+              <option value="4">Apr</option>
+              <option value="5">May</option>
+              <option value="6">Jun</option>
+              <option value="7">Jul</option>
+              <option value="8">Aug</option>
+              <option value="9">Sep</option>
+              <option value="10">Oct</option>
+              <option value="11">Nov</option>
+              <option value="12">Dec</option>
+            </select>
+          </span>
       </p>
       <p><b>Test Value:</b> <span id="test"></span></p>
+      <div id="waterGauge" style="min-height: 150px"></div>
       <!-- </div> -->
     </div>
     <div id="map" role="main" class="container-fluid"></div>
@@ -242,54 +252,12 @@
       'Satellite': satellite
     }
 
-    var hardGroup = L.layerGroup().addTo(mymap);
+    var hardGroup = L.layerGroup();
 
-    var placename, soil, guage, hardnessCont, hardnessAK, hardnessHI, hardnessPR, marker, s, chart;
+    var placename, soil, guage, turfZones, marker, s, tz, chart;
 
 
     hardnessCont = L.leafletGeotiff(url = "assets/hd4-4326.tif",
-      options = {
-        band: 0,
-        displayMin: 4,
-        displayMax: 22,
-        name: 'plant hardness',
-        colorScale: 'rainbow',
-        clampLow: false,
-        clampHigh: true,
-        // vector:true,
-        arrowSize: 20
-      }
-    ).addTo(hardGroup);
-
-    hardnessAK = L.leafletGeotiff(url = "assets/hd4-4326-ak.tif",
-      options = {
-        band: 0,
-        displayMin: 4,
-        displayMax: 22,
-        name: 'plant hardness',
-        colorScale: 'rainbow',
-        clampLow: false,
-        clampHigh: true,
-        // vector:true,
-        arrowSize: 20
-      }
-    ).addTo(hardGroup);
-
-    hardnessHI = L.leafletGeotiff(url = "assets/hd4-4326-hi.tif",
-      options = {
-        band: 0,
-        displayMin: 4,
-        displayMax: 22,
-        name: 'plant hardness',
-        colorScale: 'rainbow',
-        clampLow: false,
-        clampHigh: true,
-        // vector:true,
-        arrowSize: 20
-      }
-    ).addTo(hardGroup);
-
-    hardnessPR = L.leafletGeotiff(url = "assets/hd4-4326-pr.tif",
       options = {
         band: 0,
         displayMin: 4,
@@ -366,7 +334,7 @@
         }
         return {
           fillColor: c,
-          fillOpacity: 0.4,
+          fillOpacity: 0.2,
           color: "grey",
           weight: 0.1,
           opacity: 0,
@@ -403,6 +371,8 @@
 
         $("#test").html(s * h100);
 
+        tz = +this.feature.properties.zone;
+        $("#tzone").html(tz);
       };
 
 
@@ -426,18 +396,12 @@
           color: "brown",
           dashArray: '6',
         }
-      });
+      }).addTo(mymap);
 
-      turfZones = L.geoJSON(datasets[2], {
-        onEachFeature: function(feature, layer) {
-          layer.bindTooltip(feature.properties.zone, {
-            className: 'feature-label',
-            permanent: false,
-            direction: 'center'
-          });
-        },
+      turfZones = new L.geoJSON(datasets[2], {
         style: turfStyle,
-      });
+        onEachFeature: onEachFeature
+      }).addTo(mymap);
 
       var overlays = {
         "<span><b>Place Names</b></span>": placename,
@@ -451,6 +415,7 @@
         collapsed: false
       }).addTo(mymap);
 
+      soil.bringToFront();
       placename.bringToFront();
 
       chart = c3.generate({
