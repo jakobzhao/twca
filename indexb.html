@@ -71,6 +71,19 @@
       line-height: 1.5;
       border-radius: .2rem;
     }
+
+    #lush_legend {
+      position: absolute;
+      line-height: 12px;
+      padding: 3px;
+      /* text-align: center; */
+    }
+
+    #lush_legend i {
+      width: 7.5px;
+      height: 12px;
+      float: left;
+    }
   </style>
   <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -121,26 +134,28 @@
       <h4>Select Lush Level</h4>
       <div class="btn-group btn-group-sm">
         <button type="button" class="btn btn-primary">
-          <img src="img/twcaLogo.png" class="img-thumbnail" alt="professional">
-          <br>Professional</button>
-        <button type="button" class="btn btn-primary">
-          <img src="img/twcaLogo.png" class="img-thumbnail" alt="premium">
-          <br>Premium</button>
-        <button type="button" class="btn btn-primary">
-          <img src="img/twcaLogo.png" class="img-thumbnail" alt="homeowner">
-          <br>Homeowner</button>
+          <img src="img/twcaLogo.png" class="img-thumbnail" alt="survival">
+          <br>Survival</button>
         <button type="button" class="btn btn-primary">
           <img src="img/twcaLogo.png" class="img-thumbnail" alt="adequate">
           <br>Adequate</button>
         <button type="button" class="btn btn-primary">
-          <img src="img/twcaLogo.png" class="img-thumbnail" alt="survival">
-          <br>Survival</button>
+          <img src="img/twcaLogo.png" class="img-thumbnail" alt="homeowner">
+          <br>Homeowner</button>
+        <button type="button" class="btn btn-primary">
+          <img src="img/twcaLogo.png" class="img-thumbnail" alt="premium">
+          <br>Premium</button>
+        <button type="button" class="btn btn-primary">
+          <img src="img/twcaLogo.png" class="img-thumbnail" alt="professional">
+          <br>Professional</button>
       </div>
+      <div id="lush_legend"></div>
       <div id="popup" style="display:none"></div>
+      <br><br>
       <!-- <div id="info" class="d-flex align-items-start flex-column"> -->
       <!-- <div id="greenGauge" style="min-height: 150px"></div> -->
       <p><b>(Pr) Precip Runtime (minutes): &nbsp;</b> <span id="runtime">
-          <input type="number" name="quantity"><br>
+          <input type="number" name="runtime" min="0"><br>
         </span></p>
       <p><b>(R) Run Events/Week: &nbsp;</b> <span id="run">
           <select>
@@ -227,6 +242,12 @@
         });
     });
 
+    // 6. Set function for color ramp
+    var colors = chroma.scale('YlGn').colors(50);
+    for (var j = 0; j < colors.length; j++) {
+      $("#lush_legend").append("<i style='background: " + colors[j] + " ; opacity:0.9'></i>");
+    }
+    // $("#lush_legend").parent().append("&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; <span>more</span>");
 
     var mymap = L.map('map', {
       zoomControl: false,
