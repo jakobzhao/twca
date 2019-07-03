@@ -118,7 +118,7 @@
         </a>
         <ul>
           <li><a class="nav-link" href="#"><i class="fas fa-map-marked-alt"></i></a></li>
-          <li><a class="nav-link" href="#"><i class="fas fa-info-circle"></i></a></li>
+          <li><a class="nav-link" data-toggle="modal" data-target="#info-modal"><i class="fas fa-info-circle"></i></a></li>
         </ul>
       </div>
 
@@ -168,16 +168,13 @@
             <option value="6">5 runs</option>
           </select></span>
       </p>
-      <p><b>(ET) Evapotranspiration:</b> <span id="et"></span></p>
-      <p><b>Plant Hardness:</b> <span id="hardnessLevel"></span></p>
-      <p><b>(Sf) Soil Class:</b> <span id="soilClass"></span></p>
-      <p><b>(Kc) Turf Zone:</b> <span id="tzone"></span></p>
       <p><b>(Cpf) Cultivar plan factor: &nbsp;</b> <span id="spf">
           <select>
             <option value="0">Select:</option>
             <option value="1">Yes</option>
             <option value="2">No</option>
-          </select </span> </p> <p><b>(Pe) Rain Volume: &nbsp;</b>
+          </select </span> </p>
+      <p><b>(Pe) Monthly Average Rain Volume: &nbsp;</b>
           <span id="rainVolume">
             <select>
               <option value="0">Select month:</option>
@@ -196,7 +193,11 @@
             </select>
           </span>
       </p>
-      <p><b>Test Value:</b> <span id="test"></span></p>
+      <p><b>(ET) Monthly Evapotranspiration:</b> &nbsp;<span id="et"></span> inches</p>
+      <!-- <p><b>Plant Hardness:</b> &nbsp;<span id="hardnessLevel"></span></p> -->
+      <p><b>(Sf) Soil Class:</b> &nbsp;<span id="soilClass"></span></p>
+      <p><b>(Kc) Turf Zone:</b> &nbsp;<span id="tzone"></span></p>
+      <p><b>Test Value:</b> &nbsp;<strong><span id="test"></span></strong> <i>Minutes Per Irrigation</i></p>
       <div id="waterGauge" style="min-height: 150px"></div>
       <!-- </div> -->
     </div>
@@ -222,6 +223,37 @@
       </div>
     </div>
   </div>
+
+  <!--the info page-->
+  <div class="modal fade" id="info-modal" role="dialog">
+      <div class="modal-dialog modal-md">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">About</h4>
+              </div>
+              <div class="modal-body">
+                <p>TTWCA calculator tool <br><br>
+
+                  In the Pacific Northwest, water conservation is a very important issue.
+                  Due to the existing limitations in this critical resource, it is essential
+                  that we understand how our decisions will affect those resources. Therefore,
+                  the Turfgrass Water Conservation Alliance and the OSU Cartography/Geovisualization
+                  Group are working together to develop a platform that will allow users to gain
+                  insight into what their impact on water resources. This tool allows the user to
+                  select, visualize, and analyze various datasets that relate to soil type and vegetation.
+                  By presenting this data, the user will have the ability to determine how their choices in
+                  soil and turf type will perform regarding water consumption. The platform will also
+                  feature a calculator that uses the selected variables (soil and turf type) to calculate
+                  a water budget. The water budget is intended to influence the user's decisions based on their
+                  personal needs and water consumption goals. This collaboration is an exciting opportunity to
+                  illustrate the power of a web map due to the enhanced capability of a user to interact and
+                  manipulate the cartographic elements of the data they wish to view.</p>
+              </div>
+          </div>
+      </div>
+  </div>
+
   <script>
     $(window).ready(function() {
       $('.loader').fadeOut("slow");
@@ -273,24 +305,38 @@
       'Satellite': satellite
     }
 
-    var hardGroup = L.layerGroup();
+    // var hardGroup = L.layerGroup();
 
-    var placename, soil, guage, turfZones, marker, s, tz, chart;
+    var placename, soil, guage, turfZones, et, marker, s, tz, chart;
 
 
-    hardnessCont = L.leafletGeotiff(url = "assets/hd4-4326.tif",
+    // hardnessCont = L.leafletGeotiff(url = "assets/hd4-4326.tif",
+    //   options = {
+    //     band: 0,
+    //     displayMin: 4,
+    //     displayMax: 22,
+    //     name: 'plant hardness',
+    //     colorScale: 'rainbow',
+    //     clampLow: false,
+    //     clampHigh: true,
+    //     // vector:true,
+    //     arrowSize: 20
+    //   }
+    // ).addTo(hardGroup);
+
+    et = L.leafletGeotiff(url = "assets/pet/M08.tif",
       options = {
         band: 0,
         displayMin: 4,
         displayMax: 22,
-        name: 'plant hardness',
-        colorScale: 'rainbow',
+        name: 'Evapotranspiration',
+        colorScale: 'viridis',
         clampLow: false,
         clampHigh: true,
         // vector:true,
         arrowSize: 20
       }
-    ).addTo(hardGroup);
+    );
 
     // var turfZones = L.geoJson.ajax('assets/turfZones.geojson', {
     //   // style: style2,
@@ -378,22 +424,28 @@
           marker.setLatLng([e.latlng.lat, e.latlng.lng]);
         }
 
-        h = hardnessCont.getValueAtLatLng(e.latlng.lat, e.latlng.lng).toFixed(0);
-        h100 = ((h - 4) * 100 / (22 - 4)).toFixed(0);
-        $("#hardnessLevel").html(h100);
-        chart.load({
-          columns: [
-            ['data', h100]
-          ]
-        });
+        // h = hardnessCont.getValueAtLatLng(e.latlng.lat, e.latlng.lng).toFixed(0);
+        // h100 = ((h - 4) * 100 / (22 - 4)).toFixed(0);
+        // $("#hardnessLevel").html(h100);
+
+        ev = et.getValueAtLatLng(e.latlng.lat, e.latlng.lng).toFixed(2);
+        $("#et").html(ev);
 
         s = +this.feature.properties.class;
         $("#soilClass").html(s);
 
-        $("#test").html(s * h100);
+        testValue = (s * ev * 5).toFixed(0);
+
+        $("#test").html(testValue);
 
         tz = +this.feature.properties.zone;
         $("#tzone").html(tz);
+
+        chart.load({
+          columns: [
+            ['data', testValue]
+          ]
+        });
       };
 
 
@@ -427,9 +479,10 @@
       var overlays = {
         "<span><b>Place Names</b></span>": placename,
         "<span><b>Soil Class</b></span>": soil,
-        "<span><b>Plant Hardness</b></span>": hardGroup,
+        // "<span><b>Plant Hardness</b></span>": hardGroup,
         "<span><b>Turf Zones</b></span>": turfZones,
         "<span><b>Precipitation</b></span>": rainStates,
+        "<span><b>Evapotranspiration</b></span>": et,
       };
 
       L.control.layers(baseLayers, overlays, {
@@ -471,11 +524,11 @@
           width: 39 // for adjusting arc thickness
         },
         color: {
-          pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+          pattern: ['#6baed6', '#4292c6', '#2171b5', '#08519c'], // the three color levels for the percentage values.
           threshold: {
             //            unit: 'value', // percentage is default
             //            max: 200, // 100 is default
-            values: [30, 60, 90, 100]
+            values: [25, 50, 75, 100]
           }
         },
         size: {
@@ -557,9 +610,9 @@
         }
 
 
-        h = hardnessCont.getValueAtLatLng(lat, lng).toFixed(0);
-        h100 = ((h - 4) * 100 / (22 - 4)).toFixed(0);
-        $("#hardnessLevel").html(h100);
+        // h = hardnessCont.getValueAtLatLng(lat, lng).toFixed(0);
+        // h100 = ((h - 4) * 100 / (22 - 4)).toFixed(0);
+        // $("#hardnessLevel").html(h100);
         chart.load({
           columns: [
             ['data', h100]
