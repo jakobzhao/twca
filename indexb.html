@@ -22,10 +22,10 @@
       opacity: 0.3;
     }
 
-    .fa-info-circle {
+    /* .fa-info-circle {
       color: white;
       font-size: 20px;
-    }
+    } */
 
     .fa-map-marked-alt:hover {
       opacity: 0.3;
@@ -35,7 +35,14 @@
       color: white;
       font-size: 20px;
     }
-
+    .nav {
+      color: white;
+      font-size: 20px;
+    }
+    .pr {
+      color: white;
+      font-size: 15px;
+    }
     .btn-primary {
       color: #fff;
       background-color: #343a40;
@@ -84,6 +91,11 @@
       height: 12px;
       float: left;
     }
+
+    hr {
+      border-top: 1px solid white;
+    }
+
   </style>
   <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -118,7 +130,7 @@
         </a>
         <ul>
           <li><a class="nav-link" href="#"><i class="fas fa-map-marked-alt"></i></a></li>
-          <li><a class="nav-link" data-toggle="modal" data-target="#info-modal"><i class="fas fa-info-circle"></i></a></li>
+          <li><a class="nav-link" data-toggle="modal" data-target="#info-modal"><i class="nav fas fa-info-circle"></i></a></li>
         </ul>
       </div>
 
@@ -152,28 +164,31 @@
       <div id="lush_legend"></div>
       <div id="popup" style="display:none"></div>
       <br><br>
+      <hr>
       <!-- <div id="info" class="d-flex align-items-start flex-column"> -->
       <!-- <div id="greenGauge" style="min-height: 150px"></div> -->
-      <p><b>(Pr) Precip Runtime (in/hr): &nbsp;</b> <span id="runtime">
+      <p><a data-toggle="modal" data-target="#pr-modal"><i class="pr fas fa-info-circle"></i></a>&nbsp;<b>(Pr) Precip Runtime (in/hr):</b> <span id="runtime">
           <input type="number" name="runtime" min="0"><br>
         </span></p>
+        <hr>
       <p><b>(R) Run Events/Week: &nbsp;</b> <span id="run">
           <select>
             <option value="0">Select runs/week:</option>
-            <option value="1">0 runs</option>
-            <option value="2">1 run</option>
-            <option value="3">2 runs</option>
-            <option value="4">3 runs</option>
-            <option value="5">4 runs</option>
-            <option value="6">5 runs</option>
+            <option value="1">1 run</option>
+            <option value="2">2 runs</option>
+            <option value="3">3 runs</option>
+            <option value="4">4 runs</option>
+            <option value="5">5 runs</option>
           </select></span>
       </p>
-      <p><b>(Cpf) Cultivar plan factor: &nbsp;</b> <span id="spf">
+      <hr>
+      <p><b>(Cpf) Is your turf TCWA qualified?: &nbsp;</b> <span id="spf">
           <select>
             <option value="0">Select:</option>
             <option value="1">Yes</option>
             <option value="2">No</option>
           </select </span> </p>
+      <hr>
       <p><b>(Pe) Monthly Average Rain Volume: &nbsp;</b>
           <span id="rainVolume">
             <select>
@@ -193,11 +208,16 @@
             </select>
           </span>
       </p>
+      <hr>
       <p><b>(ET) Monthly Evapotranspiration:</b> &nbsp;<span id="et"></span> inches</p>
+      <hr>
       <!-- <p><b>Plant Hardness:</b> &nbsp;<span id="hardnessLevel"></span></p> -->
       <p><b>(Sf) Soil Class:</b> &nbsp;<span id="soilClass"></span></p>
+      <hr>
       <p><b>(Kc) Turf Zone:</b> &nbsp;<span id="tzone"></span></p>
+      <hr>
       <p><b>Test Value:</b> &nbsp;<strong><span id="test"></span></strong> <i>Minutes Per Irrigation</i></p>
+      <hr>
       <div id="waterGauge" style="min-height: 150px"></div>
       <!-- </div> -->
     </div>
@@ -233,7 +253,7 @@
                   <h4 class="modal-title">About</h4>
               </div>
               <div class="modal-body">
-                <p>TTWCA calculator tool <br><br>
+                <p>TWCA calculator tool <br><br>
 
                   In the Pacific Northwest, water conservation is a very important issue.
                   Due to the existing limitations in this critical resource, it is essential
@@ -249,6 +269,22 @@
                   personal needs and water consumption goals. This collaboration is an exciting opportunity to
                   illustrate the power of a web map due to the enhanced capability of a user to interact and
                   manipulate the cartographic elements of the data they wish to view.</p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!--the info page-->
+  <div class="modal fade" id="pr-modal" role="dialog">
+      <div class="modal-dialog modal-md">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Precipitation Runtime INFO</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                  Detailed information about Pr will be provided by TWCA
+                  </p>
               </div>
           </div>
       </div>
@@ -438,7 +474,7 @@
 
         $("#test").html(testValue);
 
-        tz = +this.feature.properties.zone;
+        tz = tzone.feature.properties.zoneID;
         $("#tzone").html(tz);
 
         chart.load({
