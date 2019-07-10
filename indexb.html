@@ -59,10 +59,6 @@
       text-align: center;
       white-space: nowrap;
       vertical-align: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
       border: 1px solid transparent;
       padding: .375rem .75rem;
       font-size: 1rem;
@@ -73,10 +69,19 @@
 
     .btn-group-sm>.btn,
     .btn-sm {
-      padding: .25rem .5rem;
+      /* padding: .25rem .5rem; */
       font-size: 11px;
       line-height: 1.5;
-      border-radius: .2rem;
+      /* border-radius: .2rem; */
+    }
+
+    .img-thumbnail {
+        padding: 0rem;
+        background-color: #343a40;
+        border: 0px solid #343a40;
+        border-radius: 0rem;
+        max-width: 58px;
+        height: 58px;
     }
 
     #lush_legend {
@@ -146,19 +151,19 @@
       <h4>Select Lush Level</h4>
       <div class="btn-group btn-group-sm">
         <button type="button" class="btn btn-primary">
-          <img src="img/twcaLogo.png" class="img-thumbnail" alt="survival">
+          <img src="img/SNAP_0.4ET.bmp" class="img-thumbnail" alt="survival">
           <br>Survival</button>
         <button type="button" class="btn btn-primary">
-          <img src="img/twcaLogo.png" class="img-thumbnail" alt="adequate">
+          <img src="img/SNAP_0.5ET.bmp" class="img-thumbnail" alt="adequate">
           <br>Adequate</button>
         <button type="button" class="btn btn-primary">
-          <img src="img/twcaLogo.png" class="img-thumbnail" alt="homeowner">
+          <img src="img/SNAP_0.6ET.bmp" class="img-thumbnail" alt="homeowner">
           <br>Homeowner</button>
         <button type="button" class="btn btn-primary">
-          <img src="img/twcaLogo.png" class="img-thumbnail" alt="premium">
+          <img src="img/SNAP_0.8ET.bmp" class="img-thumbnail" alt="premium">
           <br>Premium</button>
         <button type="button" class="btn btn-primary">
-          <img src="img/twcaLogo.png" class="img-thumbnail" alt="professional">
+          <img src="img/SNAP_1.0_ET.bmp" class="img-thumbnail" alt="professional">
           <br>Professional</button>
       </div>
       <div id="lush_legend"></div>
@@ -249,8 +254,8 @@
       <div class="modal-dialog modal-md">
           <div class="modal-content">
               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 class="modal-title">About</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">
                 <p>TWCA calculator tool <br><br>
@@ -279,11 +284,44 @@
       <div class="modal-dialog modal-md">
           <div class="modal-content">
               <div class="modal-header">
-                  <h4 class="modal-title">Precipitation Runtime INFO</h4>
+                  <h4 class="modal-title">Determining Precipitation Rates of Your Irrigation System</h4>
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">
-                  Detailed information about Pr will be provided by TWCA
+                This fairly simple step is crucial to maximizing the accuracy and effectiveness of the Water Star® Irrigation Calculation.  You have two options for determining the irrigation rate:
+1)	Direct Measurement
+To perform Direct Measurement you’ll need:
+Stopwatch - to time the sprinkler runtime
+Catchcan(s) - simple non-tapered containers are commercially available in a number of different retail locations, but any straight sided container will do.
+Ruler – for measuring the depth of water in each catchcan.
+Pen and notepad – for recording the depth of water in each catchcan.
+Calculator- for doing some calculations with the data that you gather.
+Very simple, the Direct Measurement approach can be performed with a single catchcan or with multiple catchcans in the same zone at the same time.  Using multiple catchcans in the same hydrozone and averaging out the results gives a better overall view of the precipitation rate.  These instructions will be given assuming you are using multiple cans in each hydrozone.
+First, place your cans throughout the hydrozone being tested.  Make sure the sprinklers reach the cans.  Make sure the cans are empty.
+Next, turn on your sprinkler and run it for 10 minutes.  Make sure you are timing the entire run time.
+Writing down the volumes from each catchcan makes doing the final calculations a breeze.
+The calculations follow the equation:
+    PR= (AW/time)*(60min./1hr) | PR= Precipitation Rate
+                       AW=Applied Water
+*Note: If using multiple catchcans the calculation for Applied Water is:
+AW=(AW1  + AW2 +…+ AWn)/n | n= the number of catchcans used in the hydrozone being tested.
+
+Now, enter the value you’ve calculated into the Precipitation Rate space in the Calculator tool.
+2)	Total Area Method
+To apply the Total Area method you’ll need:
+Measuring tape and two stakes – for measuring the perimeter of the irrigated area
+Pen and notepad - for writing down your calculations before making them with the calculator
+Manufacturer Performance Charts – this will give the application rate of each individual sprinkler head in the hydrozone being tested
+Use the measuring tape and stakes to measure the edges of the hydrozone being inspected.  Use these measurements to calculate the area of the hydrozone and write it in your notes as A=(your calculated area)sqft.
+After measuring the edges of your hydrozone, count the number of sprinklers in the hydrozone.  Write this number in your notes as “n=(the number of sprinkler heads in your area of interest)
+Next, use the Manufacturer Performance Charts to reference the application rate of each sprinkler head.   Multiply this number times “n”, the number of sprinkler heads you counted in your area of interest.  Write this value down as GPM= (n x gallons per minute per sprinkler head)
+Finally, use this equation:
+PR= (96.25*GPM)/A | PR= Precipitation Rate
+96.25= the constant that converts gallons per minute (GPM) to      inches per hour
+GPM = the number of sprinklerheads x the application rate (gal/min)
+A= the area of your hydrozone
+Now, enter the value you’ve calculated into the Precipitation Rate space in the Calculator tool.
+
                   </p>
               </div>
           </div>
