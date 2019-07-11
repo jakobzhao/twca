@@ -100,6 +100,17 @@
     hr {
       border-top: 1px solid white;
     }
+    hr.black {
+      border-top: 1px solid #343a40;
+    }
+    .modal-content {
+        width: 200%;
+    }
+
+    .vl {
+      border-left: 1px solid black;
+      height: 50px;
+    }
 
   </style>
   <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
@@ -172,7 +183,7 @@
       <hr>
       <!-- <div id="info" class="d-flex align-items-start flex-column"> -->
       <!-- <div id="greenGauge" style="min-height: 150px"></div> -->
-      <p><a data-toggle="modal" data-target="#pr-modal"><i class="pr fas fa-info-circle"></i></a>&nbsp;<b>(Pr) Precip Runtime (in/hr):</b> <span id="runtime">
+      <p><a data-toggle="modal" data-target="#pr-modal"><i class="pr fas fa-info-circle"></i></a>&nbsp;<b>(Pr) Precipitation Rate (in/hr):</b> <span id="runtime">
           <input type="number" name="runtime" min="0"><br>
         </span></p>
         <hr>
@@ -288,40 +299,78 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">
-                This fairly simple step is crucial to maximizing the accuracy and effectiveness of the Water Star® Irrigation Calculation.  You have two options for determining the irrigation rate:
-1)	Direct Measurement
-To perform Direct Measurement you’ll need:
-Stopwatch - to time the sprinkler runtime
-Catchcan(s) - simple non-tapered containers are commercially available in a number of different retail locations, but any straight sided container will do.
-Ruler – for measuring the depth of water in each catchcan.
-Pen and notepad – for recording the depth of water in each catchcan.
-Calculator- for doing some calculations with the data that you gather.
-Very simple, the Direct Measurement approach can be performed with a single catchcan or with multiple catchcans in the same zone at the same time.  Using multiple catchcans in the same hydrozone and averaging out the results gives a better overall view of the precipitation rate.  These instructions will be given assuming you are using multiple cans in each hydrozone.
-First, place your cans throughout the hydrozone being tested.  Make sure the sprinklers reach the cans.  Make sure the cans are empty.
-Next, turn on your sprinkler and run it for 10 minutes.  Make sure you are timing the entire run time.
-Writing down the volumes from each catchcan makes doing the final calculations a breeze.
-The calculations follow the equation:
-    PR= (AW/time)*(60min./1hr) | PR= Precipitation Rate
-                       AW=Applied Water
-*Note: If using multiple catchcans the calculation for Applied Water is:
-AW=(AW1  + AW2 +…+ AWn)/n | n= the number of catchcans used in the hydrozone being tested.
+  <p>This fairly simple step is crucial to maximizing the accuracy and effectiveness of the Water Star&reg; Irrigation Calculation.&nbsp; <br><br>
+    You have <b><u>two</u></b> options for determining the irrigation rate:</p>
+<hr class="black">
+  <h5><b>1)&nbsp; Direct Measurement</b></h5>
+  <strong>To perform Direct Measurement you&rsquo;ll need:</strong> <br>
+  <ol>
+    <li><b>Stopwatch</b> - to time the sprinkler runtime</li><br/>
+    <li><b>Catchcan(s)</b> -&nbsp; simple non-tapered containers are commercially available in a number of different retail locations,
+                            but any straight sided container will do.</li><br/>
+    <li><b>Ruler</b> &ndash; for measuring the depth of water in each catchcan.</li><br/><br/>
+    <li><b>Pen and notepad</b> &ndash; for recording the depth of water in each catchcan.</li><br/>
+    <li><b>Calculator</b>- for doing some calculations with the data that you gather.</li><br/>
+  </ol>
 
-Now, enter the value you’ve calculated into the Precipitation Rate space in the Calculator tool.
-2)	Total Area Method
-To apply the Total Area method you’ll need:
-Measuring tape and two stakes – for measuring the perimeter of the irrigated area
-Pen and notepad - for writing down your calculations before making them with the calculator
-Manufacturer Performance Charts – this will give the application rate of each individual sprinkler head in the hydrozone being tested
-Use the measuring tape and stakes to measure the edges of the hydrozone being inspected.  Use these measurements to calculate the area of the hydrozone and write it in your notes as A=(your calculated area)sqft.
-After measuring the edges of your hydrozone, count the number of sprinklers in the hydrozone.  Write this number in your notes as “n=(the number of sprinkler heads in your area of interest)
-Next, use the Manufacturer Performance Charts to reference the application rate of each sprinkler head.   Multiply this number times “n”, the number of sprinkler heads you counted in your area of interest.  Write this value down as GPM= (n x gallons per minute per sprinkler head)
-Finally, use this equation:
-PR= (96.25*GPM)/A | PR= Precipitation Rate
-96.25= the constant that converts gallons per minute (GPM) to      inches per hour
-GPM = the number of sprinklerheads x the application rate (gal/min)
-A= the area of your hydrozone
-Now, enter the value you’ve calculated into the Precipitation Rate space in the Calculator tool.
+  <!-- <li></li> -->
+  <!-- <p></p> -->
+  <p>Very simple, the Direct Measurement approach can be performed with a single catchcan or with multiple catchcans in the same zone
+     at the same time.&nbsp; Using multiple catchcans in the same hydrozone and averaging out the results gives a better overall view
+     of the precipitation rate.&nbsp; <br><br>
 
+     <b><i>These instructions will be given assuming you are using <u>multiple</u> cans in each hydrozone.&nbsp;</i></b>
+  </p>
+
+  <p><b>First</b>, place your cans throughout the hydrozone being tested.&nbsp; **Make sure the sprinklers reach the cans.&nbsp; Make sure the cans are empty.**</p>
+  <p><b>Next</b>, turn on your sprinkler and run it for 10 minutes.&nbsp; **Make sure you are timing the entire run time.**</p>
+  <p>Writing down the volumes from each catchcan makes doing the final calculations a breeze.</p>
+  <p>The calculations follow the equation:</p>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <strong>PR= (AW/time)*(60min./1hr)</strong>&nbsp;
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PR = Precipitation Rate<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AW = Applied Water</p>
+  <p><b>**Note: If using multiple catchcans the calculation for Applied Water is:**</b></p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>AW=(AW<sub>1 </sub>&nbsp;+ AW<sub>2</sub> +&hellip;+ AW<sub>n</sub>)/n </b></p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    n = the number of catchcans used in the hydrozone being tested.
+    &nbsp;&nbsp; &nbsp;&nbsp;
+</p>
+
+  <p><b>Now</b>, enter the value you&rsquo;ve calculated into the Precipitation Rate space in the Calculator tool.</p>
+<hr class="black">
+  <h5><b>2)&nbsp; Total Area Method</b></h5>
+  <p><strong>To apply the Total Area method you&rsquo;ll need:</strong></p>
+  <ol>
+    <li><b>Measuring tape and two stakes</b> - for measuring the perimeter of the irrigated area</li><br/>
+    <li><b>Pen and notepad</b> -&nbsp; for writing down your calculations before making them with the calculator</li><br/>
+    <li><b>Manufacturer Performance Charts</b> &ndash; this will give the application rate of each individual sprinkler head in the hydrozone being tested</li><br/><br/>
+  </ol>
+
+  <p>Use the measuring tape and stakes to measure the edges of the hydrozone being inspected.&nbsp; <br>
+     Use these measurements to calculate the area of the hydrozone and write it in your notes as A=(your calculated area)sqft.&nbsp;</p>
+  <p><b>After</b> measuring the edges of your hydrozone, count the number of sprinklers in the hydrozone.&nbsp; Write this number in your notes as &ldquo;n=(the number of sprinkler heads in your area of interest)</p>
+  <p><b>Next</b>, use the Manufacturer Performance Charts to reference the application rate of each sprinkler head.&nbsp;&nbsp; Multiply this number times &ldquo;n&rdquo;, the number of sprinkler heads you counted in your area of interest.&nbsp; Write this value down as GPM= (n x gallons per minute per sprinkler head)</p>
+  <p><b>Finally</b>, use this equation:</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <strong>PR= (96.25*GPM)/A </strong> <br>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     PR= Precipitation Rate</p>
+  <p>96.25= the constant that converts gallons per minute (GPM) to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inches per hour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GPM = the number of sprinklerheads x the application rate (gal/min)</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A= the area of your hydrozone</p>
+  <p><b>Now</b>, enter the value you&rsquo;ve calculated into the Precipitation Rate space in the Calculator tool.</p>
+  <p>&nbsp;</p>
                   </p>
               </div>
           </div>
