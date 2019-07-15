@@ -509,14 +509,11 @@
 
       function turfStyle(feature) {
         var c = "red";
-        switch (+feature.properties.zoneID) {
+        switch (+feature.properties.Id) {
           case 0:
             c = "blue";
             break;
           case 1:
-            c = "yellow";
-            break;
-          case 2:
             c = "red";
             break;
           default:
