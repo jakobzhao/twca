@@ -272,9 +272,10 @@ input:checked + .slider:before {
       <a href="#" class="navbar-brand">
         <h4><i class="fas fa-tachometer-alt"></i> Water Calculator</h4>
       </a>
-
-      <p><b>Select Lush Level</b></p>
-      <div class="btn-group special">
+      <p><strong>Step 1: </strong><br>Please select a location on the map</p>
+      <hr>
+      <p><strong>Step 2: </strong><br>How green do you want your lawn to be?</p>
+      <div class="btn-group" role="group" aria-label="lush levels">
         <button type="button" class="btn btn-primary">
           <img src="img/SNAP_0.4ET.bmp" class="img-thumbnail" alt="survival">
           <br>Survival</button>
@@ -292,64 +293,64 @@ input:checked + .slider:before {
           <br>Professional</button>
       </div>
       <div id="lush_legend"></div>
-      <div id="popup" style="display:none"></div>
       <br>
+      <div id="popup" style="display:none"></div>
       <hr>
       <!-- <div id="info" class="d-flex align-items-start flex-column"> -->
       <!-- <div id="greenGauge" style="min-height: 150px"></div> -->
-      <p><a data-toggle="modal" data-target="#pr-modal"><i class="pr fas fa-info-circle"></i></a>&nbsp;<b>(Pr) Precipitation Rate (in/hr):</b> <span id="runtime">
-          <input type="number" name="runtime" min="0"><br>
-        </span></p>
+
+      <p><strong>Step 3: </strong><br>How much water does your irrigation system put out? (in/hr): <span id="runtime">
+          <input type="number" name="runtime" min="0" value = "0.6">
+        </span>&nbsp;&nbsp;  <small><i><a data-toggle="modal" data-target="#pr-modal">What is my preciptitation rate? &nbsp;<i class="pr fas fa-info-circle"></i></a></i></small>
+      </p>
+
+
         <hr>
-      <p><b></i>&nbsp;(R) Run Events/Week: &nbsp;</b> <span id="run">
+      <p><strong>Step 4:</strong><br>&nbsp;How many times per week do you run your irrigation system? &nbsp; <span id="run">
           <select>
-            <option value="0">Select runs/week:</option>
             <option value="1">1 run</option>
             <option value="2">2 runs</option>
-            <option value="3">3 runs</option>
+            <option value="3" selected ="selected">3 runs</option>
             <option value="4">4 runs</option>
             <option value="5">5 runs</option>
           </select></span>
       </p>
       <hr>
-      <p><b>(Cpf) Is your turf TCWA qualified?: &nbsp;</b> <span id="spf">
+      <p><strong>Step 5:</strong><br> Is your turf TCWA qualified?: &nbsp; <span id="spf">
           <select>
-            <option value="0">Select:</option>
             <option value="1">Yes</option>
-            <option value="2">No</option>
+            <option value="2" selected="selected">No</option>
           </select </span> </p>
       <hr>
-      <p><b><i class="fas fa-cloud-rain"></i>&nbsp;(Pe) Monthly Average Rain Volume: &nbsp;</b>
+      <p><strong>Step 6:</strong><br>&nbsp;What month are you planning on watering?: &nbsp;
           <span id="rainVolume">
             <select>
-              <option value="0">Select month:</option>
-              <option value="1">Jan</option>
-              <option value="2">Feb</option>
-              <option value="3">Mar</option>
-              <option value="4">Apr</option>
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
               <option value="5">May</option>
-              <option value="6">Jun</option>
-              <option value="7">Jul</option>
-              <option value="8">Aug</option>
-              <option value="9">Sep</option>
-              <option value="10">Oct</option>
-              <option value="11">Nov</option>
-              <option value="12">Dec</option>
+              <option value="6">June</option>
+              <option value="7" selected="selected">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
             </select>
           </span>
       </p>
       <hr>
-      <p><b>(ET) Monthly Evapotranspiration:</b> &nbsp;<span id="et"></span> inches</p>
-      <hr>
+      <!-- <p><b>(ET) Monthly Evapotranspiration:</b> &nbsp;<span id="et"></span> inches</p>
+      <hr> -->
       <!-- <p><b>Plant Hardness:</b> &nbsp;<span id="hardnessLevel"></span></p> -->
-      <p><b>(Sf) Soil Class:</b> &nbsp;<span id="soilClass"></span></p>
+      <!-- <p><b>(Sf) Soil Class:</b> &nbsp;<span id="soilClass"></span></p>
       <hr>
       <p><b>(Kc) Turf Zone:</b> &nbsp;<span id="tzone"></span></p>
-      <hr>
+      <hr> -->
       <p><b>Test Value:</b> &nbsp;<strong><span id="test"></span></strong> <i>Minutes Per Irrigation</i></p>
       <div id="waterGauge" style="min-height: 150px"></div>
-      <br>
-      <br>
+
       <ul>
         <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="nav-link" href="#"><i class="nav fab fa-facebook"></i></a></li>
         <li><a class="nav-link" href="#"><i class="nav fab fa-instagram"></i></a></li>
@@ -367,7 +368,7 @@ input:checked + .slider:before {
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Disclaimer</h5>
+          <strong class="modal-title" id="exampleModalLongTitle">Disclaimer</strong>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -387,7 +388,7 @@ input:checked + .slider:before {
     <div class="modal-dialog modal-dialog-centered" role="document"  style="width:1250px!important">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Help</h5>
+          <strong class="modal-title" id="exampleModalLongTitle">Help</strong>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -410,36 +411,6 @@ input:checked + .slider:before {
   </div>
 
   <!--the info page-->
-  <div class="modal fade" id="info-modal" role="dialog">
-      <div class="modal-dialog modal-md">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h4 class="modal-title">About</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              <div class="modal-body">
-                <p>TWCA calculator tool <br><br>
-
-                  In the Pacific Northwest, water conservation is a very important issue.
-                  Due to the existing limitations in this critical resource, it is essential
-                  that we understand how our decisions will affect those resources. Therefore,
-                  the Turfgrass Water Conservation Alliance and the OSU Cartography/Geovisualization
-                  Group are working together to develop a platform that will allow users to gain
-                  insight into what their impact on water resources. This tool allows the user to
-                  select, visualize, and analyze various datasets that relate to soil type and vegetation.
-                  By presenting this data, the user will have the ability to determine how their choices in
-                  soil and turf type will perform regarding water consumption. The platform will also
-                  feature a calculator that uses the selected variables (soil and turf type) to calculate
-                  a water budget. The water budget is intended to influence the user's decisions based on their
-                  personal needs and water consumption goals. This collaboration is an exciting opportunity to
-                  illustrate the power of a web map due to the enhanced capability of a user to interact and
-                  manipulate the cartographic elements of the data they wish to view.</p>
-              </div>
-          </div>
-      </div>
-  </div>
-
-  <!--the info page-->
   <div class="modal fade" id="pr-modal" role="dialog">
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -451,7 +422,7 @@ input:checked + .slider:before {
   <p>This fairly simple step is crucial to maximizing the accuracy and effectiveness of the Water Star&reg; Irrigation Calculation.&nbsp; <br><br>
     You have <b><u>two</u></b> options for determining the irrigation rate:</p>
 <hr class="black">
-  <h5><b>1)&nbsp; Direct Measurement</b></h5>
+  <strong><b>1)&nbsp; Direct Measurement</b></strong>
   <strong>To perform Direct Measurement you&rsquo;ll need:</strong> <br>
   <ol>
     <li><b>Stopwatch</b> - to time the sprinkler runtime</li><br/>
@@ -494,7 +465,7 @@ input:checked + .slider:before {
 
   <p><b>Now</b>, enter the value you&rsquo;ve calculated into the Precipitation Rate space in the Calculator tool.</p>
 <hr class="black">
-  <h5><b>2)&nbsp; Total Area Method</b></h5>
+  <strong><b>2)&nbsp; Total Area Method</b></strong>
   <p><strong>To apply the Total Area method you&rsquo;ll need:</strong></p>
   <ol>
     <li><b>Measuring tape and two stakes</b> - for measuring the perimeter of the irrigated area</li><br/>
@@ -592,7 +563,6 @@ input:checked + .slider:before {
       maxZoom: 16,
       minZoom: 1
     });
-
 
     $(".leaflet-control-attribution")
       .css("background-color", "transparent")
@@ -739,8 +709,8 @@ input:checked + .slider:before {
 
         $("#test").html(testValue);
 
-        tz = tzone.feature.properties.zoneID;
-        $("#tzone").html(tz);
+        // tz = tzone.feature.properties.zoneID;
+        // $("#tzone").html(tz);
 
         chart.load({
           columns: [
