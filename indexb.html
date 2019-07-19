@@ -18,15 +18,14 @@
   <link rel="stylesheet" href="css/main.css">
   <!-- <link rel="stylesheet" href="css/sidebar.css"> -->
   <style>
+    /* a {
+      color: white;
+    }
 
-  a {
-    color: white;
-  }
-
-  a:hover {
-    color: white;
-    opacity: 0.3;
-  }
+    a:hover {
+      color: white;
+      opacity: 0.3;
+    } */
 
     .fa-info-circle:hover {
       opacity: 0.3;
@@ -45,25 +44,26 @@
       color: white;
       font-size: 20px;
     }
+
     .nav {
       color: white;
       font-size: 20px;
     }
+
     .pr {
       color: white;
       font-size: 15px;
     }
+
+    /* button styling */
     .btn-primary {
       color: #fff;
       background-color: #343a40;
       border-color: #007bff;
     }
 
-    /* h4 {
-      text-align: center;
-    } */
-
     .btn {
+      background-color: #343a40;
       display: inline-block;
       font-weight: 400;
       text-align: center;
@@ -75,32 +75,42 @@
       border-radius: 25px;
     }
 
-    .btn:hover{
-      color: mediumslateblue
+    .btn:hover {
+      color: #343a40
     }
 
-    /* .btn-group-sm>.btn,
-    .btn-sm {
-      padding: .25rem .5rem;
-      font-size: 11px;
-      line-height: 1.5;
-      border-radius: .2rem;
-    } */
+    .logo-thumbnail {
+      bottom: 1%;
+      /* background-color: #343a40; */
+      /* border: .5px solid #343a40; */
+      border-radius: 10px;
+      max-width: 500px;
+      max-height: 75px;
+      opacity: 0.8;
+    }
+    .logo-thumbnail:hover {
+      opacity: 0.3;
+    }
 
+    #pureseedLogo {
+      height:75px
+    }
     .img-thumbnail {
-        padding: 0rem;
-        background-color: #343a40;
-        border: .5px solid #343a40;
-        border-radius: 10px;
-        max-width: 58px;
-        height: 58px;
+      padding: 0rem;
+      background-color: #343a40;
+      border: .5px solid #343a40;
+      border-radius: 10px;
+      width: 58px;
+      height: 58px;
     }
 
+
+
+    /* lush legend styling */
     #lush_legend {
       position: absolute;
       line-height: 12px;
       padding: 3px;
-      /* text-align: center; */
     }
 
     #lush_legend i {
@@ -112,39 +122,68 @@
     hr {
       border-top: 1px solid white;
     }
+
     hr.black {
       border-top: 1px solid #343a40;
     }
-    /* .modal-content {
-        width: 200%;
-    } */
 
     .nav-link {
-        display: inline-block;
-        font-size: 1.25rem;
-        line-height: inherit;
-        /* white-space: nowrap; */
-        color: white;
+      display: inline-block;
+      font-size: 1.25rem;
+      line-height: inherit;
+      /* white-space: nowrap; */
+      color: white;
     }
 
     #info {
-        position:absolute;
-        width: 23%;
-        top: 1%;
-        bottom: 1%;
-        left: .5%;
-        z-index: 1000;
-        background: #343a40;
-        color: #fff;
-        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-        padding: 10px;
-        border-radius: 25px;
-        opacity: .9;
+      position: absolute;
+      width: 23%;
+      top: 1%;
+      bottom: 1%;
+      left: .5%;
+      z-index: 1000;
+      background: #343a40;
+      color: #fff;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      border-radius: 25px;
+      opacity: .9;
+      overflow: hidden
     }
 
+    #attribution {
+      position: absolute;
+      height: 7%;
+      width: 60.5%;
+      bottom: 1%;
+      right: 11.75%;
+      z-index: 1000;
+      /* background: #343a40; */
+      /* color: #fff; */
+      /* box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2); */
+      /* padding: 10px; */
+      border-radius: 25px;
+      opacity: .9;
+      overflow: hidden
+    }
+
+    #info a {
+      color: white;
+    }
+
+    #info a:hover {
+      color: white;
+      opacity: 0.3;
+    }
+
+    #disclaimer {
+      color: #343a40;
+    }
+
+    /* list stying */
     ul {
-        list-style-type: none;
-        height: 25px;
+      list-style-type: none;
+      height: 25px;
     }
 
     li {
@@ -153,76 +192,98 @@
 
     /* switch */
 
-/* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 46px;
-  height: 24px;
-}
+    /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 46px;
+      height: 24px;
+    }
 
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
 
-input:checked + .slider {
-  background-color: #2196F3;
-}
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(22px);
-  -ms-transform: translateX(22px);
-  transform: translateX(22px);
-}
+    input:checked+.slider:before {
+      -webkit-transform: translateX(22px);
+      -ms-transform: translateX(22px);
+      transform: translateX(22px);
+    }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 16px;
-}
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 16px;
+    }
 
-.slider.round:before {
-  border-radius: 50%;
-}
-/* switch */
-.btn-group.special {
-  display: flex;
-}
+    .slider.round:before {
+      border-radius: 50%;
+    }
 
-.special .btn {
-  flex: 1
-}
+    /* switch */
+    .btn-group.special {
+      display: flex;
+    }
+
+    .special .btn {
+      flex: 1
+    }
+
+    .custom-select {
+      position: relative;
+      width: 25%;
+      color: white;
+      background-color: grey;
+      box-shadow: inset -2px -2px 15px 6px #343a40;
+      border: 1px solid grey;
+      padding: 5px;
+      float: right;
+    }
+
+    #info input {
+      width: 25%;
+      color: white;
+      background-color: grey;
+      box-shadow: inset -2px -2px 15px 6px #343a40;
+      border: 1px solid grey;
+      padding: 5px;
+      float: right;
+    }
   </style>
   <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -250,30 +311,19 @@ input:checked + .slider:before {
 
 <body>
   <header>
-    <!-- <div class="navbar navbar-dark bg-dark shadow-sm">
-      <div class="container-fluid d-flex justify-content-between">
-        <a href="#" class="navbar-brand d-flex align-items-center">
-          <strong><i class="fas fa-tachometer-alt"></i> Water Calculator</strong>
-        </a>
-        <ul>
-          <li><a class="nav-link" href="#"><i class="fas fa-map-marked-alt"></i></a></li>
-          <li><a class="nav-link" data-toggle="modal" data-target="#info-modal"><i class="nav fas fa-info-circle"></i></a></li>
-        </ul>
-      </div>
-
-    </div> -->
-
   </header>
 
   <main>
     <div class="loader"></div>
 
+    <!-- Water calculator inputs -->
     <div id="info">
-      <a href="#" class="navbar-brand">
-        <h4><i class="fas fa-tachometer-alt"></i> Water Calculator</h4>
+      <a href="indexb.html" class="navbar-brand">
+        <h4><i class="fas fa-tachometer-alt"></i> Irrigation Calculator</h4>
       </a>
       <p><strong>Step 1: </strong><br>Please select a location on the map</p>
       <hr>
+      <!-- Lush levels -->
       <p><strong>Step 2: </strong><br>How green do you want your lawn to be?</p>
       <div class="btn-group" role="group" aria-label="lush levels">
         <button type="button" class="btn btn-primary">
@@ -296,96 +346,80 @@ input:checked + .slider:before {
       <br>
       <div id="popup" style="display:none"></div>
       <hr>
-      <!-- <div id="info" class="d-flex align-items-start flex-column"> -->
-      <!-- <div id="greenGauge" style="min-height: 150px"></div> -->
-
+      <!-- Precipitation rate -->
       <p><strong>Step 3: </strong><br>How much water does your irrigation system put out? (in/hr): <span id="runtime">
-          <input type="number" name="runtime" min="0" value = "0.6">
-        </span>&nbsp;&nbsp;  <small><i><a data-toggle="modal" data-target="#pr-modal">What is my preciptitation rate? &nbsp;<i class="pr fas fa-info-circle"></i></a></i></small>
+          <small><i><a data-toggle="modal" data-target="#pr-modal">What is my preciptitation rate? &nbsp;<i class="pr fas fa-info-circle"></i></a></i></small>
+        </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="number" name="runtime" min="0" value="0.6">
       </p>
-
-
-        <hr>
+      <hr>
       <p><strong>Step 4:</strong><br>&nbsp;How many times per week do you run your irrigation system? &nbsp; <span id="run">
-          <select>
-            <option value="1">1 run</option>
-            <option value="2">2 runs</option>
-            <option value="3" selected ="selected">3 runs</option>
-            <option value="4">4 runs</option>
-            <option value="5">5 runs</option>
+          <br>
+          <select class="custom-select custom-select-sm">
+            <option value="1">1 time</option>
+            <option value="2">2 times</option>
+            <option value="3" selected="selected">3 times</option>
+            <option value="4">4 times</option>
+            <option value="5">5 times</option>
           </select></span>
       </p>
+      <br>
       <hr>
       <p><strong>Step 5:</strong><br> Is your turf TCWA qualified?: &nbsp; <span id="spf">
-          <select>
+          <select class="custom-select custom-select-sm">
             <option value="1">Yes</option>
             <option value="2" selected="selected">No</option>
-          </select </span> </p>
-      <hr>
-      <p><strong>Step 6:</strong><br>&nbsp;What month are you planning on watering?: &nbsp;
-          <span id="rainVolume">
-            <select>
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7" selected="selected">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
-          </span>
-      </p>
-      <hr>
-      <!-- <p><b>(ET) Monthly Evapotranspiration:</b> &nbsp;<span id="et"></span> inches</p>
+          </select </span> </p> <hr>
+          <p><strong>Step 6:</strong><br>&nbsp;What month are you planning on watering?: &nbsp;
+            <span id="rainVolume">
+              <select class="custom-select custom-select-sm">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7" selected="selected">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </span>
+          </p>
+          <hr>
+          <!-- <p><b>(ET) Monthly Evapotranspiration:</b> &nbsp;<span id="et"></span> inches</p>
       <hr> -->
-      <!-- <p><b>Plant Hardness:</b> &nbsp;<span id="hardnessLevel"></span></p> -->
-      <!-- <p><b>(Sf) Soil Class:</b> &nbsp;<span id="soilClass"></span></p>
+          <!-- <p><b>Plant Hardness:</b> &nbsp;<span id="hardnessLevel"></span></p> -->
+          <!-- <p><b>(Sf) Soil Class:</b> &nbsp;<span id="soilClass"></span></p>
       <hr>
       <p><b>(Kc) Turf Zone:</b> &nbsp;<span id="tzone"></span></p>
       <hr> -->
-      <p><b>Test Value:</b> &nbsp;<strong><span id="test"></span></strong> <i>Minutes Per Irrigation</i></p>
-      <div id="waterGauge" style="min-height: 150px"></div>
+          <p><b>Results:</b> &nbsp;<strong><span id="test"></span></strong> <i>Minutes Per Irrigation</i></p>
+          <div id="waterGauge" style="min-height: 150px"></div>
 
-      <ul>
-        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="nav-link" href="#"><i class="nav fab fa-facebook"></i></a></li>
-        <li><a class="nav-link" href="#"><i class="nav fab fa-instagram"></i></a></li>
-        <li><a class="nav-link" href="#"><i class="nav fab fa-twitter-square"></i></a></li>
-        <li><a class="nav-link" data-toggle="modal" data-target="#disclaimer"><i class="nav fas fa-question-circle"></i></a></li>
-      </ul>
-      <!-- </div> -->
+          <ul>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="nav-link" href="#"><i class="nav fab fa-facebook"></i></a></li>
+            <li><a class="nav-link" href="#"><i class="nav fab fa-instagram"></i></a></li>
+            <li><a class="nav-link" href="#"><i class="nav fab fa-twitter-square"></i></a></li>
+            <li><a class="nav-link" data-toggle="modal" data-target="#disclaimer"><i class="nav fas fa-question-circle"></i></a></li>
+          </ul>
+          <!-- </div> -->
 
+    </div>
+    <div id="attribution">
+      <img src="img\logoonwhite.png" id="twcaLogo" class="logo-thumbnail" alt="twcaLogo">
+      <img src="img\pennington-logo-(minus-glow).jpg" id="penningtonLogo" class="logo-thumbnail" alt="penningtonLogo">
+      <img src="img\proseeds_final.jpg" id="proseedsLogo" class="logo-thumbnail" alt="proseedsLogo">
+      <img src="img\Pure seed.jpg" id="pureseedLogo" class="logo-thumbnail" alt="pureseedLogo">
     </div>
     <div id="map" role="main" class="container-fluid"></div>
   </main>
 
   <!-- Modal -->
-  <!-- <div id="disclaimer" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <strong class="modal-title" id="exampleModalLongTitle">Disclaimer</strong>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-        </div>
-        <div class="modal-footer">
-          <button id="disclaimer-close" type="button" class="btn btn-primary">close</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- Modal -->
   <div id="disclaimer" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document"  style="width:1250px!important">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
         <div class="modal-header">
           <strong class="modal-title" id="exampleModalLongTitle">Help</strong>
@@ -394,7 +428,37 @@ input:checked + .slider:before {
           </button>
         </div>
         <div class="modal-body">
-          bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+          <div id="demo" class="carousel slide" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active"></li>
+              <li data-target="#demo" data-slide-to="1"></li>
+              <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="img\logoonwhite.png" alt="Los Angeles">
+              </div>
+              <div class="carousel-item">
+                <img src="img\pennington-logo-(minus-glow).jpg" alt="Chicago">
+              </div>
+              <div class="carousel-item">
+                <img src="img\proseeds_final.jpg" alt="New York">
+              </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+
+          </div>
         </div>
         <div class="modal-footer">
           <div class="col-md-10">
@@ -412,91 +476,98 @@ input:checked + .slider:before {
 
   <!--the info page-->
   <div class="modal fade" id="pr-modal" role="dialog">
-      <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h4 class="modal-title">Determining Precipitation Rates of Your Irrigation System</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              <div class="modal-body">
-  <p>This fairly simple step is crucial to maximizing the accuracy and effectiveness of the Water Star&reg; Irrigation Calculation.&nbsp; <br><br>
-    You have <b><u>two</u></b> options for determining the irrigation rate:</p>
-<hr class="black">
-  <strong><b>1)&nbsp; Direct Measurement</b></strong>
-  <strong>To perform Direct Measurement you&rsquo;ll need:</strong> <br>
-  <ol>
-    <li><b>Stopwatch</b> - to time the sprinkler runtime</li><br/>
-    <li><b>Catchcan(s)</b> -&nbsp; simple non-tapered containers are commercially available in a number of different retail locations,
-                            but any straight sided container will do.</li><br/>
-    <li><b>Ruler</b> &ndash; for measuring the depth of water in each catchcan.</li><br/><br/>
-    <li><b>Pen and notepad</b> &ndash; for recording the depth of water in each catchcan.</li><br/>
-    <li><b>Calculator</b>- for doing some calculations with the data that you gather.</li><br/>
-  </ol>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Determining Precipitation Rates of Your Irrigation System</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>This fairly simple step is crucial to maximizing the accuracy and effectiveness of the Water Star&reg; Irrigation Calculation.&nbsp; <br><br>
+            You have <b><u>two</u></b> options for determining the irrigation rate:</p>
+          <hr class="black">
+          <strong><b>1)&nbsp; Direct Measurement</b></strong>
+          <strong>To perform Direct Measurement you&rsquo;ll need:</strong> <br>
+          <ol>
+            <li><b>Stopwatch</b> - to time the sprinkler runtime</li><br />
+            <li><b>Catchcan(s)</b> -&nbsp; simple non-tapered containers are commercially available in a number of different retail locations,
+              but any straight sided container will do.</li><br />
+            <li><b>Ruler</b> &ndash; for measuring the depth of water in each catchcan.</li><br /><br />
+            <li><b>Pen and notepad</b> &ndash; for recording the depth of water in each catchcan.</li><br />
+            <li><b>Calculator</b>- for doing some calculations with the data that you gather.</li><br />
+          </ol>
 
-  <!-- <li></li> -->
-  <!-- <p></p> -->
-  <p>Very simple, the Direct Measurement approach can be performed with a single catchcan or with multiple catchcans in the same zone
-     at the same time.&nbsp; Using multiple catchcans in the same hydrozone and averaging out the results gives a better overall view
-     of the precipitation rate.&nbsp; <br><br>
+          <!-- <li></li> -->
+          <!-- <p></p> -->
+          <p>Very simple, the Direct Measurement approach can be performed with a single catchcan or with multiple catchcans in the same zone
+            at the same time.&nbsp; Using multiple catchcans in the same hydrozone and averaging out the results gives a better overall view
+            of the precipitation rate.&nbsp; <br><br>
 
-     <b><i>These instructions will be given assuming you are using <u>multiple</u> cans in each hydrozone.&nbsp;</i></b>
-  </p>
+            <b><i>These instructions will be given assuming you are using <u>multiple</u> cans in each hydrozone.&nbsp;</i></b>
+          </p>
 
-  <p><b>First</b>, place your cans throughout the hydrozone being tested.&nbsp; **Make sure the sprinklers reach the cans.&nbsp; Make sure the cans are empty.**</p>
-  <p><b>Next</b>, turn on your sprinkler and run it for 10 minutes.&nbsp; **Make sure you are timing the entire run time.**</p>
-  <p>Writing down the volumes from each catchcan makes doing the final calculations a breeze.</p>
-  <p>The calculations follow the equation:</p>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <strong>PR= (AW/time)*(60min./1hr)</strong>&nbsp;
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PR = Precipitation Rate<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AW = Applied Water</p>
-  <p><b>**Note: If using multiple catchcans the calculation for Applied Water is:**</b></p>
-  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <b>AW=(AW<sub>1 </sub>&nbsp;+ AW<sub>2</sub> +&hellip;+ AW<sub>n</sub>)/n </b></p>
-  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    n = the number of catchcans used in the hydrozone being tested.
-    &nbsp;&nbsp; &nbsp;&nbsp;
-</p>
+          <p><b>First</b>, place your cans throughout the hydrozone being tested.&nbsp; **Make sure the sprinklers reach the cans.&nbsp; Make sure the cans are empty.**</p>
+          <p><b>Next</b>, turn on your sprinkler and run it for 10 minutes.&nbsp; **Make sure you are timing the entire run time.**</p>
+          <p>Writing down the volumes from each catchcan makes doing the final calculations a breeze.</p>
+          <p>The calculations follow the equation:</p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <strong>PR= (AW/time)*(60min./1hr)</strong>&nbsp;
+          <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PR = Precipitation Rate<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AW = Applied Water</p>
+          <p><b>**Note: If using multiple catchcans the calculation for Applied Water is:**</b></p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>AW=(AW<sub>1 </sub>&nbsp;+ AW<sub>2</sub> +&hellip;+ AW<sub>n</sub>)/n </b></p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            n = the number of catchcans used in the hydrozone being tested.
+            &nbsp;&nbsp; &nbsp;&nbsp;
+          </p>
 
-  <p><b>Now</b>, enter the value you&rsquo;ve calculated into the Precipitation Rate space in the Calculator tool.</p>
-<hr class="black">
-  <strong><b>2)&nbsp; Total Area Method</b></strong>
-  <p><strong>To apply the Total Area method you&rsquo;ll need:</strong></p>
-  <ol>
-    <li><b>Measuring tape and two stakes</b> - for measuring the perimeter of the irrigated area</li><br/>
-    <li><b>Pen and notepad</b> -&nbsp; for writing down your calculations before making them with the calculator</li><br/>
-    <li><b>Manufacturer Performance Charts</b> &ndash; this will give the application rate of each individual sprinkler head in the hydrozone being tested</li><br/><br/>
-  </ol>
+          <p><b>Now</b>, enter the value you&rsquo;ve calculated into the Precipitation Rate space in the Calculator tool.</p>
+          <hr class="black">
+          <strong><b>2)&nbsp; Total Area Method</b></strong>
+          <p><strong>To apply the Total Area method you&rsquo;ll need:</strong></p>
+          <ol>
+            <li><b>Measuring tape and two stakes</b> - for measuring the perimeter of the irrigated area</li><br />
+            <li><b>Pen and notepad</b> -&nbsp; for writing down your calculations before making them with the calculator</li><br />
+            <li><b>Manufacturer Performance Charts</b> &ndash; this will give the application rate of each individual sprinkler head in the hydrozone being tested</li><br /><br />
+          </ol>
 
-  <p>Use the measuring tape and stakes to measure the edges of the hydrozone being inspected.&nbsp; <br>
-     Use these measurements to calculate the area of the hydrozone and write it in your notes as A=(your calculated area)sqft.&nbsp;</p>
-  <p><b>After</b> measuring the edges of your hydrozone, count the number of sprinklers in the hydrozone.&nbsp; Write this number in your notes as &ldquo;n=(the number of sprinkler heads in your area of interest)</p>
-  <p><b>Next</b>, use the Manufacturer Performance Charts to reference the application rate of each sprinkler head.&nbsp;&nbsp; Multiply this number times &ldquo;n&rdquo;, the number of sprinkler heads you counted in your area of interest.&nbsp; Write this value down as GPM= (n x gallons per minute per sprinkler head)</p>
-  <p><b>Finally</b>, use this equation:</p>
-  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <strong>PR= (96.25*GPM)/A </strong> <br>
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     PR= Precipitation Rate</p>
-  <p>96.25= the constant that converts gallons per minute (GPM) to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inches per hour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GPM = the number of sprinklerheads x the application rate (gal/min)</p>
-  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A= the area of your hydrozone</p>
-  <p><b>Now</b>, enter the value you&rsquo;ve calculated into the Precipitation Rate space in the Calculator tool.</p>
-  <p>&nbsp;</p>
-                  </p>
-              </div>
-          </div>
+          <p>Use the measuring tape and stakes to measure the edges of the hydrozone being inspected.&nbsp; <br>
+            Use these measurements to calculate the area of the hydrozone and write it in your notes as A=(your calculated area)sqft.&nbsp;</p>
+          <p><b>After</b> measuring the edges of your hydrozone, count the number of sprinklers in the hydrozone.&nbsp; Write this number in your notes as &ldquo;n=(the number of sprinkler heads in your area of interest)</p>
+          <p><b>Next</b>, use the Manufacturer Performance Charts to reference the application rate of each sprinkler head.&nbsp;&nbsp; Multiply this number times &ldquo;n&rdquo;, the number of sprinkler heads you counted in your area of
+            interest.&nbsp; Write this value down as GPM= (n x gallons per minute per sprinkler head)</p>
+          <p><b>Finally</b>, use this equation:</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>PR= (96.25*GPM)/A </strong> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            PR= Precipitation Rate</p>
+          <p>96.25= the constant that converts gallons per minute (GPM) to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inches per hour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            GPM = the number of sprinklerheads x the application rate (gal/min)</p>
+          <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            A= the area of your hydrozone</p>
+          <p><b>Now</b>, enter the value you&rsquo;ve calculated into the Precipitation Rate space in the Calculator tool.</p>
+          <p>&nbsp;</p>
+          </p>
+        </div>
       </div>
+    </div>
   </div>
-
   <script>
     $(window).ready(function() {
       $('.loader').fadeOut("slow");
@@ -792,7 +863,7 @@ input:checked + .slider:before {
           min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
           max: 100, // 100 is default
           // units: ' %',
-          width: 39 // for adjusting arc thickness
+          width: 39, // for adjusting arc thickness
         },
         color: {
           pattern: ['#6baed6', '#4292c6', '#2171b5', '#08519c'], // the three color levels for the percentage values.
@@ -801,6 +872,9 @@ input:checked + .slider:before {
             //            max: 200, // 100 is default
             values: [25, 50, 75, 100]
           }
+        },
+        tooltip: {
+          show: false
         },
         size: {
           height: 180
@@ -890,7 +964,7 @@ input:checked + .slider:before {
         // $("#hardnessLevel").html(h100);
         chart.load({
           columns: [
-            ['data', h100]
+            ['data', s * h100]
           ]
         });
 
