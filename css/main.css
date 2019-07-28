@@ -4,7 +4,7 @@ html, body, main {
   height: 100vh;
   margin: 0;
   background: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   overflow: hidden
 }
 
@@ -93,7 +93,7 @@ html, body, main {
 }
 
 .c3-gauge-value {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   fill: white !important;
 }
 
@@ -113,6 +113,7 @@ html, body, main {
 #title {
   margin-bottom: 30px;
   font-size: 25px;
+   font-family: 'Oswald', sans-serif;
 }
 
 #title span {
@@ -126,7 +127,8 @@ html, body, main {
 }
 
 #info .step p {
-  line-height: 30px;
+  line-height: 28px;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 #info .result {
@@ -137,6 +139,7 @@ html, body, main {
 #info .result p {
   font-size: 20px;
   line-height: 30px;
+  font-family: 'Oswald', sans-serif;
 }
 
 span {
@@ -153,31 +156,33 @@ span {
 }
 
 #info input {
-  position: absolute;
+  position: relative;
+  float: right;
   width: 25%;
   color: white;
   background-color: grey;
   border: 1px solid grey;
   padding: 5px;
   margin-left: 10px;
-  float: left;
+  margin-right: 20px;
   font-size: 14px;
   border-radius: 3px;
   line-height: 20px;
 }
 
 #info .custom-select {
-  position: absolute;
+  position: relative;
+  float: right;
   width: 25%;
   color: white;
   margin-left: 10px;
+  margin-right: 20px;
   background-color: grey;
   border: 1px solid grey;
   padding: 5px;
-  float: left;
 }
 
-/* list stying */
+
 ul {
   list-style-type: none;
   height: 10px;
