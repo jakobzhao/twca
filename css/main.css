@@ -35,14 +35,18 @@ html, body,main
   overflow: hidden
 }
 
+
 .leaflet-control-layers {
-  color: #333333 !important;
-  background-color: none;
-    padding: 6px 8px;
+  color: white !important;
+  padding: 6px 8px;
   border: none !important;
-  background: rgba(225, 225, 225, 0.5) !important;
+  background: #343a40 !important;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) !important;
-  border-radius: 5px  !important;
+  border-radius: 0px  !important;
+  position: static;
+  z-index: 1000;
+  opacity: 0.8;
+  /* width: 100%; */
 }
 
 .leaflet-control-zoom, .leaflet-control-zoom-in, .leaflet-control-zoom-out {
@@ -52,16 +56,109 @@ html, body,main
   border: none !important;
   background: rgba(225, 225, 225, 0.5) !important;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) !important;
-  border-radius: 5px  !important;
+  border-radius: 0px  !important;
 }
 
 
-.c3-legend-background {
-  fill: transparent;
-  stroke:transparent;
+
+
+/* #sidebar h4 i {
+  font-size: 1.25e,;
+  padding-right: 10px
+} */
+
+
+.btn-primary {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #007bff;
 }
 
-#info {
+.btn {
+  background-color: #343a40;
+  display: inline-block;
+  font-weight: 380;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 11.5px;
+  line-height: 1.5;
+  border-radius: 25px;
+}
+
+.btn:hover {
+  color: #343a40
+}
+
+.logo-thumbnail {
+  bottom: 1%;
+  /* background-color: #343a40; */
+  /* border: .5px solid #343a40; */
+  border-radius: 10px;
+  max-width: 500px;
+  max-height: 75px;
+  opacity: 0.8;
+}
+.logo-thumbnail:hover {
+  opacity: 0.3;
+}
+
+#pureseedLogo {
+  height:75px;
+}
+
+
+.img-thumbnail {
+  padding: 0rem;
+  background-color: #343a40;
+  border: .5px solid #343a40;
+  border-radius: 10px;
+  width: 58px;
+  height: 58px;
+}
+
+
+
+hr {
+  margin-top: .85rem;
+  margin-bottom: .85rem;
+  border-top: 1px solid white;
+}
+
+hr.black {
+  border-top: 1px solid #343a40;
+}
+
+.nav-link {
+  display: inline-block;
+  font-size: 1.25rem;
+  line-height: inherit;
+  /* white-space: nowrap; */
+  color: white;
+}
+
+
+
+#attribution {
+  position: absolute;
+  height: 7.5%;
+  width: 60.5%;
+  bottom: 1%;
+  right: 11.75%;
+  z-index: 1000;
+  border-radius: 25px;
+  opacity: .9;
+  overflow: hidden
+}
+
+
+#disclaimer {
+  color: #343a40;
+}
+
+
+/* #info {
   position: fixed;
   z-index: 1000;
   bottom: 10px;
@@ -72,14 +169,62 @@ html, body,main
   padding: 6px 8px;
   background: rgba(225, 225, 225, 0.5);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+
+} */
+
+#info {
+  position: absolute;
+  width: 25%;
+  top: 1%;
+  bottom: 1%;
+  left: .5%;
+  z-index: 1000;
+  background: #343a40;
+  color: #fff;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 0px;
+  opacity: 1;
+  /* overflow: hidden */
 }
 
-#sidebar h4 i {
-  font-size: 1.25e,;
-  padding-right: 10px
+#info input {
+  width: 25%;
+  color: white;
+  background-color: grey;
+  /* box-shadow: inset -2px -2px 15px 6px #343a40; */
+  border: 1px solid grey;
+  padding: 5px;
+  float: right;
 }
 
-#mapFunc {
-  font-size: small
+
+#info a {
+  color: white;
+}
+
+#info a:hover {
+  color: white;
+  opacity: 0.3;
+}
+
+#info .custom-select {
+  position: relative;
+  width: 25%;
+  color: white;
+  background-color: grey;
+  border: 1px solid grey;
+  padding: 5px;
+  float: right;
+}
+
+
+/* list stying */
+ul {
+  list-style-type: none;
+  height: 25px;
+}
+
+li {
+  float: left;
 }
