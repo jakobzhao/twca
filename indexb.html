@@ -45,9 +45,9 @@
     <!-- Water calculator inputs -->
     <div id="info" data-simplebar data-simplebar-auto-hide="false">
       <div id="title"><i class="fas fa-tachometer-alt"></i> Irrigation Calculator
-        <span><a href="#"><i class="fab fa-facebook"></i></a></span>
+        <span><a href="https://www.facebook.com/TurfgrassWaterConservationAlliance/" target="_blank"><i class="fab fa-facebook"></i></a></span>
         <span><a href="#"><i class="fab fa-instagram"></i></a></span>
-        <span><a href="#"><i class="fab fa-twitter-square"></i></a></span>
+        <span><a href="https://twitter.com/_tgwca" target="_blank"><i class="fab fa-twitter-square"></i></a></span>
         <span><a data-toggle="modal" data-target="#disclaimer"><i class="nav fas fa-question-circle"></i></a></span>
       </div>
       <p style="font-size:small; font-style:italic"> Please work through the order of the following steps to calculate the water for irrigation.</p>
@@ -131,10 +131,10 @@
       </div>
 
       <div class="step">
-        <span><img src="img\logoonwhite.png" id="twcaLogo" class="logo-thumbnail" alt="twcaLogo"></span>
-        <span><img src="img\pennington-logo-(minus-glow).jpg" id="penningtonLogo" class="logo-thumbnail" alt="penningtonLogo"></span>
-        <span><img src="img\proseeds_final.jpg" id="proseedsLogo" class="logo-thumbnail" alt="proseedsLogo"></span>
-        <span><img src="img\Pure seed.jpg" id="pureseedLogo" class="logo-thumbnail" alt="pureseedLogo"></span>
+        <span><a href="https://www.tgwca.org/" target="_blank"><img src="img\logoonwhite.png" id="twcaLogo" class="logo-thumbnail" alt="twcaLogo"></a></span>
+        <span><a href="https://www.pennington.com/all-products/grass-seed" target="_blank"><img src="img\pennington-logo-(minus-glow).jpg" id="penningtonLogo" class="logo-thumbnail" alt="penningtonLogo"></a></span>
+        <span><a href="http://proseedsmarketing.com/" target="_blank"><img src="img\proseeds_final.jpg" id="proseedsLogo" class="logo-thumbnail" alt="proseedsLogo"></a></span>
+        <span><a href="https://www.pureseed.com/" target="_blank"><img src="img\Pure seed.jpg" id="pureseedLogo" class="logo-thumbnail" alt="pureseedLogo"></a></span>
       </div>
 
     </div>
@@ -356,16 +356,6 @@
     })
 
 
-
-
-    var colors = chroma.scale('YlGn').colors(50);
-    for (var j = 0; j < colors.length; j++) {
-      $("#lush_legend").append("<i style='background: " + colors[j] + " ; opacity:0.9'></i>");
-    }
-
-
-    // $("#lush_legend").parent().append("&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; <span>more</span>");
-
     var mymap = L.map('map', {
       zoomControl: false,
       maxZoom: 16,
@@ -389,7 +379,6 @@
       'Streets': streets,
       'Satellite': satellite
     }
-
 
     var placename, soil, guage, turfZones, et, marker, s, tz, chart;
 
