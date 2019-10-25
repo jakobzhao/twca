@@ -32,6 +32,9 @@
   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
   <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js"></script>
+
+
+
   <script src="js/L.TopoJSON.js"></script>
   <script src="js/geotiff.js"></script>
   <script src="js/plotty.js"></script>
@@ -100,7 +103,7 @@
       </div>
       <div class="step">
         <p>Step 5: Is your turf TCWA qualified?<small><i><a data-toggle="modal" data-target="#twcaModal">&nbsp;<i class="pr fas fa-info-circle"></i></a></i></small>
-          <span >
+          <span>
             <select id="spf" class="custom-select custom-select-sm">
               <option value="1">Yes</option>
               <option value="2" selected="selected">No</option>
@@ -110,7 +113,7 @@
       </div>
       <div class="step">
         <p>Step 6: What month are you irrigating?
-          <span >
+          <span>
             <select id="rainVolume" class="custom-select custom-select-sm">
               <option value="1">January</option>
               <option value="2">February</option>
@@ -130,7 +133,7 @@
         <hr>
       </div>
       <div class="result">
-        <p class="d-flex justify-content-center">Minutes Per Irrigation for Soil Type: <span id="soiltype"><span></p>
+        <p class="d-flex justify-content-center">Minutes Per Irrigation&nbsp;<span id="soiltype"><span></p>
         <div id="waterGauge" style="min-height: 150px"></div>
       </div>
 
@@ -392,6 +395,8 @@
     }
 
     var placename, soil, guage, turfZones, et, marker, s, tz, chart;
+    var soiltype = ["(Not Applicable)", "for Fine Soil", "for Mucky Soil", "for Coarse Soil"];
+    var cSoilType = soiltype[0];
     // et: evapotranspiration
 
     var cd = new Date();
@@ -412,26 +417,26 @@
 
     $("#rainVolume").val(month + 1);
 
-    $("#rainVolume").change(function(){
+    $("#rainVolume").change(function() {
 
-        mymap.removeLayer(et);
-        var month = $("#rainVolume").val();
-        if (month.length ==1 ) {
-            month = "0" + month;
-        };
-        et = L.leafletGeotiff(url = "assets/pet/M" + month + ".tif",
-          options = {
-            band: 0,
-            displayMin: 4,
-            displayMax: 22,
-            name: 'Evapotranspiration',
-            colorScale: 'viridis',
-            clampLow: false,
-            clampHigh: true,
-            // vector:true,
-            arrowSize: 20
-          }
-        ).addTo(mymap);
+      mymap.removeLayer(et);
+      var month = $("#rainVolume").val();
+      if (month.length == 1) {
+        month = "0" + month;
+      };
+      et = L.leafletGeotiff(url = "assets/pet/M" + month + ".tif",
+        options = {
+          band: 0,
+          displayMin: 4,
+          displayMax: 22,
+          name: 'Evapotranspiration',
+          colorScale: 'viridis',
+          clampLow: false,
+          clampHigh: true,
+          // vector:true,
+          arrowSize: 20
+        }
+      ).addTo(mymap);
     })
 
 
@@ -444,15 +449,13 @@
       d3.json("assets/turfZones.geojson"),
     ]).then(function(datasets) {
 
-      soiltype = ["Not Applicable", "Fine Soil", "Mucky Soil", "Coarse Soil"];
-
       function soilStyle(feature) {
         var c = "red";
         var t = 0;
         switch (+feature.properties.class) {
           case 1:
             c = "green";
-            t = 0;
+            t = 0.4;
             break;
           case 2:
             c = "lightgreen";
@@ -463,13 +466,13 @@
             t = 0.4;
             break;
           default:
-            c = "yellow";
+            c = "red";
             t = 0;
         }
+
         return {
           fillColor: c,
           fillOpacity: t,
-          color: "grey",
           weight: 0.1,
           opacity: 0,
           smoothFactor: 0
@@ -491,7 +494,6 @@
         return {
           fillColor: c,
           fillOpacity: 0.2,
-          color: "grey",
           weight: 0.1,
           opacity: 0,
           smoothFactor: 0
@@ -514,18 +516,29 @@
         }
 
 
-        ev = et.getValueAtLatLng(e.latlng.lat, e.latlng.lng).toFixed(2);
-        $("#et").html(ev);
-
         s = +this.feature.properties.class;
-        $("#soilClass").html(s);
+
+        cSoilType = soiltype[s];
+        $("#soiltype").text(cSoilType);
+
+
+        var turfZoneFeature = leafletPip.pointInLayer(e.latlng, turfZones)[0];
+        var cZone = turfZoneFeature.feature.properties.zoneID;
+        var monthName = $("#rainVolume option:selected").text();
+        var rainStateFeature = leafletPip.pointInLayer(e.latlng, rainStates)[0];
+        var cRainState = rainStateFeature.feature.properties[monthName];
+
+        ev = et.getValueAtLatLng(e.latlng.lat, e.latlng.lng).toFixed(2);
+
+        console.log(cZone);
+        console.log(cRainState);
+        console.log(cSoilType);
+        console.log(ev);
+
 
         testValue = (s * ev * 5).toFixed(0);
 
         $("#test").html(testValue);
-
-        // tz = tzone.feature.properties.zoneID;
-        // $("#tzone").html(tz);
 
         chart.load({
           columns: [
@@ -541,13 +554,6 @@
       }).addTo(mymap);
 
       rainStates = L.geoJSON(datasets[1], {
-        onEachFeature: function(feature, layer) {
-          layer.bindTooltip(feature.properties.NAME, {
-            className: 'feature-label',
-            permanent: false,
-            direction: 'center'
-          });
-        },
         style: {
           opacity: 0.8,
           fillOpacity: 0,
@@ -558,8 +564,7 @@
       }).addTo(mymap);
 
       turfZones = new L.geoJSON(datasets[2], {
-        style: turfStyle,
-        onEachFeature: onEachFeature
+        style: turfStyle
       }).addTo(mymap);
 
       var overlays = {
@@ -604,16 +609,12 @@
             },
             show: true // to turn off the min/max labels.
           },
-          min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-          max: 100, // 100 is default
-          // units: ' %',
           width: 39, // for adjusting arc thickness
         },
         color: {
-          pattern: ['#6baed6', '#4292c6', '#2171b5', '#08519c'], // the three color levels for the percentage values.
+          //  pattern: ['#6baed6', '#4292c6', '#2171b5', '#08519c'], // the three color levels for the percentage values.
+          pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'],
           threshold: {
-            //            unit: 'value', // percentage is default
-            //            max: 200, // 100 is default
             values: [25, 50, 75, 100]
           }
         },
@@ -630,7 +631,6 @@
 
 
 
-
     var geocoder = L.Control.geocoder({
         defaultMarkGeocode: true,
         placeholder: "Search a location...",
@@ -638,19 +638,8 @@
       })
       .on('markgeocode', function(e) {
 
-
-
         lat = e.geocode.center.lat;
         lng = e.geocode.center.lng;
-
-        soil.fireEvent('click', {
-          latlng: new L.latLng(lat, lng)
-        });
-
-        turfZones.fireEvent('click', {
-          latlng: new L.latLng(lat, lng)
-        });
-
 
         if (!marker) {
           marker = L.marker([lat, lng]).addTo(mymap);
@@ -658,24 +647,41 @@
           marker.setLatLng([lat, lng]);
         }
 
+        var soilFeature = leafletPip.pointInLayer(e.geocode.center, soil)[0];
+        s = soilFeature.feature.properties.class;
+
+        cSoilType = soiltype[s];
+        $("#soiltype").text(cSoilType);
+
+        var turfZoneFeature = leafletPip.pointInLayer(e.geocode.center, turfZones)[0];
+        var cZone = turfZoneFeature.feature.properties.zoneID;
+        var monthName = $("#rainVolume option:selected").text();
+        var rainStateFeature = leafletPip.pointInLayer(e.geocode.center, rainStates)[0];
+        var cRainState = rainStateFeature.feature.properties[monthName];
+
+        ev = et.getValueAtLatLng(e.geocode.center.lat, e.geocode.center.lng).toFixed(2);
+
+        console.log(cZone);
+        console.log(cRainState);
+        console.log(cSoilType);
+        console.log(ev);
+
+
+        testValue = (s * ev * 5).toFixed(0);
+
+        $("#test").html(testValue);
 
         chart.load({
           columns: [
-            ['data', s * h100]
+            ['data', testValue]
           ]
         });
 
-        var soilResults = leafletPip.pointInLayer([lng, lat], soil);
-        s = +soilResults[0].feature.properties.class;
-        $("#soilClass").html(s);
 
-        var turfResults = leafletPip.pointInLayer([lng, lat], turfZones);
-        tz = +turfResults[0].feature.properties.zoneID;
-        $("#tZones").html(tz);
-
-        $("#test").html(s * h100);
-
-        mymap.setZoom(10);
+        mymap.fitBounds([
+          [56.73, -135.48],
+          [18.97, -67.35]
+        ]);
 
 
 
