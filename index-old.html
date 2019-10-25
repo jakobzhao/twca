@@ -20,7 +20,6 @@
 
   <link rel="stylesheet" href="css/main.css">
   <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-
   <!-- javascript libraries -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://unpkg.com/d3@5/dist/d3.js"></script>
@@ -45,14 +44,14 @@
     <!-- Water calculator inputs -->
     <div id="info" data-simplebar data-simplebar-auto-hide="false">
       <div id="title"><i class="fas fa-tachometer-alt"></i> Irrigation Calculator
-        <span><a href="https://www.facebook.com/TurfgrassWaterConservationAlliance/" target="_blank"><i class="fab fa-facebook"></i></a></span>
-        <span><a href="https://twitter.com/_tgwca" target="_blank"><i class="fab fa-twitter-square"></i></a></span>
+        <span><a href="#"><i class="fab fa-facebook"></i></a></span>
+        <span><a href="#"><i class="fab fa-instagram"></i></a></span>
+        <span><a href="#"><i class="fab fa-twitter-square"></i></a></span>
         <span><a data-toggle="modal" data-target="#disclaimer"><i class="nav fas fa-question-circle"></i></a></span>
       </div>
       <p style="font-size:small; font-style:italic"> Please work through the order of the following steps to calculate the water for irrigation.</p>
       <div class="step">
-        <p>Step 1: Select a location on the map via clicking on the map or entering a location on the search box on the top right corner. This version only supports locations in the contigious United States (Alaska, Hawaii are excluded.)
-          <small><i><a data-toggle="modal" data-target="#soilModal">&nbsp;<i class="pr fas fa-info-circle"></i></a></i></small></p>
+        <p>Step 1: Select a location on the map via clicking on the map or entering a location on the search box on the top right corner.</p>
       </div>
       <div class="step">
         <p>Step 2: How green do you want your lawn to be?</p>
@@ -82,14 +81,14 @@
       <div class="step">
         <p>Step 3: How much water does your irrigation system put out (in/hr)?<input type="number" name="runtime" min="0" value="0.6"></p>
         <p id="runtime">
-          <small><i><a data-toggle="modal" data-target="#pr-modal">How to determine my preciptitation rate? <i class="pr fas fa-info-circle"></i></a></i></small>
+          <small><i><a data-toggle="modal" data-target="#pr-modal">How to determine my preciptitation rate? &nbsp;<i class="pr fas fa-info-circle"></i></a></i></small>
         </p>
+        <!-- <p> </p> -->
       </div>
 
       <div class="step">
-        <p>Step 4: How many times per week do you run your irrigation system?
-          <span>
-            <select id="run" class="custom-select custom-select-sm">
+        <p>Step 4: How many times per week do you run your irrigation system? &nbsp; <span id="run">
+            <select class="custom-select custom-select-sm">
               <option value="1">1 time</option>
               <option value="2">2 times</option>
               <option value="3" selected="selected">3 times</option>
@@ -99,54 +98,48 @@
         </p>
       </div>
       <div class="step">
-        <p>Step 5: Is your turf TCWA qualified?<small><i><a data-toggle="modal" data-target="#twcaModal">&nbsp;<i class="pr fas fa-info-circle"></i></a></i></small>
-          <span >
-            <select id="spf" class="custom-select custom-select-sm">
+        <p>Step 5: Is your turf TCWA qualified? &nbsp; <span id="spf">
+            <select class="custom-select custom-select-sm">
               <option value="1">Yes</option>
               <option value="2" selected="selected">No</option>
-            </select>
-          </span>
-        </p>
-      </div>
-      <div class="step">
-        <p>Step 6: What month are you irrigating?
-          <span >
-            <select id="rainVolume" class="custom-select custom-select-sm">
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
-          </span>
-        </p>
-        <hr>
+            </select </span> </p> </div> <div class="step">
+            <p>Step 6: What month are you irrigating? &nbsp;
+              <span id="rainVolume">
+                <select class="custom-select custom-select-sm">
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7" selected="selected">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+              </span>
+            </p>
+            <hr>
       </div>
       <div class="result">
-        <p class="d-flex justify-content-center">Minutes Per Irrigation for Soil Type: <span id="soiltype"><span></p>
+        <p class="d-flex justify-content-center">Minutes Per Irrigation</p>
         <div id="waterGauge" style="min-height: 150px"></div>
       </div>
 
       <div class="step">
-        <p><a href="https://www.tgwca.org/" target="_blank"><img width="100" height="100" src="img\logoonwhite.png" id="twcaLogo" alt="twcaLogo"></a></p>
-        <span><a href="https://www.pennington.com/all-products/grass-seed" target="_blank"><img src="img\pennington-logo-(minus-glow).jpg" id="penningtonLogo" class="logo-thumbnail" alt="penningtonLogo"></a></span>
-        <span><a href="http://proseedsmarketing.com/" target="_blank"><img src="img\proseeds_final.jpg" id="proseedsLogo" class="logo-thumbnail" alt="proseedsLogo"></a></span>
-        <span><a href="https://www.pureseed.com/" target="_blank"><img src="img\Pure seed.jpg" id="pureseedLogo" class="logo-thumbnail" alt="pureseedLogo"></a></span>
+        <span><img src="img\logoonwhite.png" id="twcaLogo" class="logo-thumbnail" alt="twcaLogo"></span>
+        <span><img src="img\pennington-logo-(minus-glow).jpg" id="penningtonLogo" class="logo-thumbnail" alt="penningtonLogo"></span>
+        <span><img src="img\proseeds_final.jpg" id="proseedsLogo" class="logo-thumbnail" alt="proseedsLogo"></span>
+        <span><img src="img\Pure seed.jpg" id="pureseedLogo" class="logo-thumbnail" alt="pureseedLogo"></span>
       </div>
-      <p style="font-size: 10pt">Supported by <a href="http://hgis.uw.edu">Humanistic GIS Lab at University of Washington - Seattle</a>, <a href="https://ceoas.oregonstate.edu/" target="_blank">College of Earth, Ocean, and Atmospheric Sciences at
-          Oregon State University </a> and <a href="https://division.uaex.edu/" target="_blank">the division of agriculture, University of Arkansas</a>.</p>
+
     </div>
 
     <div id="map" role="main" class="container-fluid"></div>
   </main>
-  <!--disclaimer Modal -->
+  <!-- Modal -->
   <div id="disclaimer" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
@@ -160,6 +153,12 @@
           <div id="demo" class="carousel slide" data-ride="carousel">
             <p>This calculator is intended only as a watering guide and is based on historical data. For greater accuracy we recommend consulting with your local extension agency. Please make sure your watering practice complies with state and local
               ordinances. For more information about this calculator contact us at <a href="mailto://info@tgwca.org">info@tgwca.org</a>.</p>
+            <h5>What impact does soil have on my water need?</h5>
+            <p>While soil texture doesn’t impact water demand it does affect recommended watering frequency. Sandy soils require more frequent watering with shorter run times. If you’re unsure about your soil type check with your local extension
+              agent.</p>
+            <h5>How do I know if my turf is TWCA Qualified?</h5>
+            <p>All TWCA qualified cultivars carry the TWCA seal. You can learn more about the TWCA Qualified cultivars at <a href="https://www.tgwca.org/list-of-qualified-products1.html">https://www.tgwca.org/list-of-qualified-products1.html</a>. For more information contact us at <a href="mailto://info@tgwca.org">info@tgwca.org</a>. If you’re unsure it
+              is best to assume your turf is not TWCA Qualified.</p>
           </div>
         </div>
         <div class="modal-footer">
@@ -174,53 +173,7 @@
       </div>
     </div>
   </div>
-  <!-- soil modal -->
-  <div id="soilModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
-      <div class="modal-content">
-        <div class="modal-header">
-          <strong class="modal-title" id="exampleModalLongTitle">
-            <h5>What impact does soil have on my water need?</h5>
-          </strong>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div id="demo" class="carousel slide" data-ride="carousel">
-            <p>While soil texture doesn’t impact water demand it does affect recommended watering frequency. Sandy soils require more frequent watering with shorter run times. If you’re unsure about your soil type check with your local extension
-              agent.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- TWCA Qalified modal -->
-  <div id="twcaModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
-      <div class="modal-content">
-        <div class="modal-header">
-          <strong class="modal-title" id="exampleModalLongTitle">
-            <h5>How do I know if my turf is TWCA Qualified?</h5>
-          </strong>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div id="demo" class="carousel slide" data-ride="carousel">
-            <p>All TWCA qualified cultivars carry the TWCA seal. You can learn more about the TWCA Qualified cultivars at <a href="https://www.tgwca.org/list-of-qualified-products1.html">https://www.tgwca.org/list-of-qualified-products1.html</a>. If
-              you’re unsure it is best to assume your turf is not TWCA Qualified.</p>
-          </div>
-        </div>
-        <div id="twcaFooter" class="col-xs-10">
-          <div class="modal-footer" style="float: left;">
-            For more information contact us at &nbsp <a href="mailto://info@tgwca.org">info@tgwca.org</a>.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <!--the info page-->
   <div class="modal fade" id="pr-modal" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -335,20 +288,16 @@
   <script>
     $(window).ready(function() {
       $('.loader').fadeOut("slow");
-
       $("#nextTimeSwitcher input").on("click", function() {
         if ($("#nextTimeSwitcher input:checked").val() === "on") {
           localStorage.setItem('popState', 'shown');
         } else {
-
           localStorage.setItem('popState', 'notShown');
         }
       })
-
       if (localStorage.getItem('popState') != 'shown') {
         console.log("show disclaimer");
         $('#disclaimer').modal('show');
-
       } else {
         console.log("hide disclaimer");
         $('#disclaimer').modal('hide');
@@ -359,13 +308,15 @@
           $('#disclaimer').modal('hide');
         });
     });
-
     $(".showFrontPage").on("click", function() {
       $('#disclaimer').modal('show');
       localStorage.setItem('popState', 'notShown');
     })
-
-
+    var colors = chroma.scale('YlGn').colors(50);
+    for (var j = 0; j < colors.length; j++) {
+      $("#lush_legend").append("<i style='background: " + colors[j] + " ; opacity:0.9'></i>");
+    }
+    // $("#lush_legend").parent().append("&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; <span>more</span>");
     var mymap = L.map('map', {
       zoomControl: false,
       maxZoom: 16,
@@ -374,29 +325,19 @@
       [56.73, -135.48],
       [18.97, -67.35]
     ]);
-
     $(".leaflet-control-attribution")
       .css("background-color", "transparent")
-      .html("Supported by <a href='http://geoviz.ceoas.oregonstate.edu' target='_blank'> GeoViz Lab @ Oregon State University </a>")
-      .html("");
-
-
+      .html("Supported by <a href='http://geoviz.ceoas.oregonstate.edu' target='_blank'> GeoViz Lab @ Oregon State University </a>");
     var gray = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png').addTo(mymap);
     var streets = L.tileLayer('http://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png');
     var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
-
     var baseLayers = {
       'Grayscale': gray,
       'Streets': streets,
       'Satellite': satellite
     }
-
     var placename, soil, guage, turfZones, et, marker, s, tz, chart;
-    // et: evapotranspiration
-
-    var cd = new Date();
-    var month = cd.getMonth();
-    et = L.leafletGeotiff(url = "assets/pet/M" + (month + 1).toString() + ".tif",
+    et = L.leafletGeotiff(url = "assets/pet/M08.tif",
       options = {
         band: 0,
         displayMin: 4,
@@ -409,42 +350,12 @@
         arrowSize: 20
       }
     ).addTo(mymap);
-
-    $("#rainVolume").val(month + 1);
-
-    $("#rainVolume").change(function(){
-
-        mymap.removeLayer(et);
-        var month = $("#rainVolume").val();
-        if (month.length ==1 ) {
-            month = "0" + month;
-        };
-        et = L.leafletGeotiff(url = "assets/pet/M" + month + ".tif",
-          options = {
-            band: 0,
-            displayMin: 4,
-            displayMax: 22,
-            name: 'Evapotranspiration',
-            colorScale: 'viridis',
-            clampLow: false,
-            clampHigh: true,
-            // vector:true,
-            arrowSize: 20
-          }
-        ).addTo(mymap);
-    })
-
-
     placename = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}@2x.png').addTo(mymap);
-
-
     Promise.all([
       d3.json("assets/soil.json"),
       d3.json("assets/rainStates.geojson"),
       d3.json("assets/turfZones.geojson"),
     ]).then(function(datasets) {
-
-
       function soilStyle(feature) {
         var c = "red";
         switch (+feature.properties.class) {
@@ -469,7 +380,6 @@
           smoothFactor: 0
         };
       };
-
       function turfStyle(feature) {
         var c = "red";
         switch (+feature.properties.Id) {
@@ -491,49 +401,35 @@
           smoothFactor: 0
         };
       };
-
-
       function onEachFeature(feature, layer) {
         layer.on({
           click: clickFeature
         });
       };
-
       function clickFeature(e) {
-
         if (!marker) {
           marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(mymap);
         } else {
           marker.setLatLng([e.latlng.lat, e.latlng.lng]);
         }
-
-
         ev = et.getValueAtLatLng(e.latlng.lat, e.latlng.lng).toFixed(2);
         $("#et").html(ev);
-
         s = +this.feature.properties.class;
         $("#soilClass").html(s);
-
         testValue = (s * ev * 5).toFixed(0);
-
         $("#test").html(testValue);
-
         // tz = tzone.feature.properties.zoneID;
         // $("#tzone").html(tz);
-
         chart.load({
           columns: [
             ['data', testValue]
           ]
         });
       };
-
-
       soil = new L.TopoJSON(datasets[0], {
         style: soilStyle,
         onEachFeature: onEachFeature
       }).addTo(mymap);
-
       rainStates = L.geoJSON(datasets[1], {
         onEachFeature: function(feature, layer) {
           layer.bindTooltip(feature.properties.NAME, {
@@ -550,12 +446,10 @@
           dashArray: '6',
         }
       }).addTo(mymap);
-
       turfZones = new L.geoJSON(datasets[2], {
         style: turfStyle,
         onEachFeature: onEachFeature
       }).addTo(mymap);
-
       var overlays = {
         "<span><b>Place Names</b></span>": placename,
         "<span><b>Soil Class</b></span>": soil,
@@ -564,14 +458,11 @@
         "<span><b>Precipitation</b></span>": rainStates,
         "<span><b>Evapotranspiration</b></span>": et,
       };
-
       L.control.layers(baseLayers, overlays, {
         collapsed: false
       }).addTo(mymap);
-
       soil.bringToFront();
       placename.bringToFront();
-
       chart = c3.generate({
         data: {
           columns: [
@@ -619,60 +510,39 @@
         },
         bindto: "#waterGauge"
       });
-
     });
-
-
-
-
     var geocoder = L.Control.geocoder({
         defaultMarkGeocode: true,
         placeholder: "Search a location...",
         errorMessage: "Nothing was Found..."
       })
       .on('markgeocode', function(e) {
-
-
-
         lat = e.geocode.center.lat;
         lng = e.geocode.center.lng;
-
         soil.fireEvent('click', {
           latlng: new L.latLng(lat, lng)
         });
-
         turfZones.fireEvent('click', {
           latlng: new L.latLng(lat, lng)
         });
-
-
         if (!marker) {
           marker = L.marker([lat, lng]).addTo(mymap);
         } else {
           marker.setLatLng([lat, lng]);
         }
-
-
         chart.load({
           columns: [
             ['data', s * h100]
           ]
         });
-
         var soilResults = leafletPip.pointInLayer([lng, lat], soil);
         s = +soilResults[0].feature.properties.class;
         $("#soilClass").html(s);
-
         var turfResults = leafletPip.pointInLayer([lng, lat], turfZones);
         tz = +turfResults[0].feature.properties.zoneID;
         $("#tZones").html(tz);
-
         $("#test").html(s * h100);
-
         mymap.setZoom(10);
-
-
-
       })
       .addTo(mymap);
   </script>
