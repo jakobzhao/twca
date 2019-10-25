@@ -444,25 +444,31 @@
       d3.json("assets/turfZones.geojson"),
     ]).then(function(datasets) {
 
+      soiltype = ["Not Applicable", "Fine Soil", "Mucky Soil", "Coarse Soil"];
 
       function soilStyle(feature) {
         var c = "red";
+        var t = 0;
         switch (+feature.properties.class) {
-          case 0:
-            c = "yellow";
-            break;
           case 1:
-            c = "blue";
+            c = "green";
+            t = 0;
             break;
           case 2:
-            c = "green";
+            c = "lightgreen";
+            t = 0.4;
+            break;
+          case 3:
+            c = "yellow";
+            t = 0.4;
             break;
           default:
-            c = "red";
+            c = "yellow";
+            t = 0;
         }
         return {
           fillColor: c,
-          fillOpacity: 0.4,
+          fillOpacity: t,
           color: "grey",
           weight: 0.1,
           opacity: 0,
