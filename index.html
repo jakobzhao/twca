@@ -632,7 +632,8 @@
 
 
     var geocoder = L.Control.geocoder({
-        defaultMarkGeocode: true,
+        defaultMarkGeocode: false,
+        showUniqueResult: true,
         placeholder: "Search a location...",
         errorMessage: "Nothing was Found..."
       })
@@ -666,7 +667,6 @@
         console.log(cSoilType);
         console.log(ev);
 
-
         testValue = (s * ev * 5).toFixed(0);
 
         $("#test").html(testValue);
@@ -677,13 +677,10 @@
           ]
         });
 
-
         mymap.fitBounds([
           [56.73, -135.48],
           [18.97, -67.35]
         ]);
-
-
 
       })
       .addTo(mymap);
