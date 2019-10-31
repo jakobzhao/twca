@@ -54,11 +54,7 @@
       </div>
       <p style="font-size:small; font-style:italic"> Please work through the order of the following steps to calculate the water for irrigation.</p>
       <div class="step">
-        <p>Step 1: Select a location on the map via clicking on the map or entering a location on the search box on the top right corner. This version only supports locations in the contigious United States (Alaska, Hawaii are excluded.)
-          <small><i><a data-toggle="modal" data-target="#soilModal">&nbsp;<i class="pr fas fa-info-circle"></i></a></i></small></p>
-      </div>
-      <div class="step">
-        <p>Step 2: How green do you want your lawn to be?</p>
+        <p>Step 1: How green do you want your lawn to be?</p>
         <div role="group">
           <button type="button" class="btn">
             <img src="img/SNAP_0.4ET.bmp" class="img-thumbnail" alt="survival">
@@ -83,14 +79,14 @@
         </div>
       </div>
       <div class="step">
-        <p>Step 3: How much water does your irrigation system put out (in/hr)?<input type="number" name="runtime" min="0" value="0.6"></p>
+        <p>Step 2: How much water does your irrigation system put out (in/hr)?<input type="number" name="runtime" min="0" value="0.6"></p>
         <p id="runtime">
           <small><i><a data-toggle="modal" data-target="#pr-modal">How to determine my preciptitation rate? <i class="pr fas fa-info-circle"></i></a></i></small>
         </p>
       </div>
 
       <div class="step">
-        <p>Step 4: How many times per week do you run your irrigation system?
+        <p>Step 3: How many times per week do you run your irrigation system?
           <span>
             <select id="run" class="custom-select custom-select-sm">
               <option value="1">1 time</option>
@@ -102,7 +98,7 @@
         </p>
       </div>
       <div class="step">
-        <p>Step 5: Is your turf TCWA qualified?<small><i><a data-toggle="modal" data-target="#twcaModal">&nbsp;<i class="pr fas fa-info-circle"></i></a></i></small>
+        <p>Step 4: Is your turf TCWA qualified?<small><i><a data-toggle="modal" data-target="#twcaModal">&nbsp;<i class="pr fas fa-info-circle"></i></a></i></small>
           <span>
             <select id="spf" class="custom-select custom-select-sm">
               <option value="1">Yes</option>
@@ -112,7 +108,7 @@
         </p>
       </div>
       <div class="step">
-        <p>Step 6: What month are you irrigating?
+        <p>Step 5: What month are you irrigating?
           <span>
             <select id="rainVolume" class="custom-select custom-select-sm">
               <option value="1">January</option>
@@ -130,15 +126,23 @@
             </select>
           </span>
         </p>
-        <hr>
+
       </div>
+      <div class="step">
+        <p>Step 6: Select a location on the map via clicking on the map or entering a location on the search box on the top right corner. This version only supports locations in the contigious United States (Alaska, Hawaii are excluded.)
+          <small><i><a data-toggle="modal" data-target="#soilModal">&nbsp;<i class="pr fas fa-info-circle"></i></a></i></small></p>
+      </div>
+      <hr>
       <div class="result">
         <p class="d-flex justify-content-center">Minutes Per Irrigation&nbsp;<span id="soiltype"><span></p>
         <div id="waterGauge" style="min-height: 150px"></div>
       </div>
 
       <div class="step">
-        <p><a href="https://www.tgwca.org/" target="_blank"><img width="100" height="100" src="img\logoonwhite.png" id="twcaLogo" alt="twcaLogo"></a></p>
+        <p>
+          <span><a href="https://www.tgwca.org/" target="_blank"><img width="100" height="100" src="img\logoonwhite.png" id="twcaLogo" alt="twcaLogo"></a></span>
+          <span><a href="https://turfmerchants.com" target="_blank"><img width="100" height="100" src="img\TMI-logo-New2015.jpg"></a></span>
+        </p>
         <span><a href="https://www.pennington.com/all-products/grass-seed" target="_blank"><img src="img\pennington-logo-(minus-glow).jpg" id="penningtonLogo" class="logo-thumbnail" alt="penningtonLogo"></a></span>
         <span><a href="http://proseedsmarketing.com/" target="_blank"><img src="img\proseeds_final.jpg" id="proseedsLogo" class="logo-thumbnail" alt="proseedsLogo"></a></span>
         <span><a href="https://www.pureseed.com/" target="_blank"><img src="img\Pure seed.jpg" id="pureseedLogo" class="logo-thumbnail" alt="pureseedLogo"></a></span>
