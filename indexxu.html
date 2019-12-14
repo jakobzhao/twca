@@ -511,6 +511,7 @@
           click: clickFeature
         });
       };
+     var maintenanceType;
 
       function clickFeature(e) {
 
@@ -539,12 +540,14 @@
         var pr = $("input").val();
         var runTime = $("#run").val();
         var cpf = $("#spf").val();
-        var maintenanceType = $("button option:checked").text();
+      //  maintenanceType = $("button option:checked").text();
 
-        /*$("button").on("click",function(maintenanceType){
-          maintenanceType = ($(this).text());
-        })*/
+        $("button").on("click",function(){
+          maintenanceType = $(this).text().trim();
+          console.log(maintenanceType);
+        });
 
+        //cZone need to be changed into numbers , 1 for cold，2 for warm
         console.log(cZone);
         console.log(cRainState);
         console.log(cSoilType);
