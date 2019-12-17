@@ -511,7 +511,17 @@
           click: clickFeature
         });
       };
-     var maintenanceType;
+
+    //so we can call this variable later , initialize it with a value
+     var maintenanceType = "Survival";
+
+     //will permanently change the style
+     $("button").on("click",function(){
+       $("button").css("background-color","#343a40");
+       $(this).css("background-color","#777");
+       maintenanceType = $(this).text().trim();
+       console.log(maintenanceType);
+     });
 
       function clickFeature(e) {
 
@@ -542,10 +552,20 @@
         var cpf = $("#spf").val();
       //  maintenanceType = $("button option:checked").text();
 
-        $("button").on("click",function(){
+        /*$("button").on("click",function(){
           maintenanceType = $(this).text().trim();
           console.log(maintenanceType);
-        });
+        });*/
+
+        //do the switch here for cZone
+        switch(cZone){
+          case 'Warm':
+            cZone = 1;
+            break;
+          case 'Cold':
+            cZone = 2;
+            break;
+        }
 
         //cZone need to be changed into numbers , 1 for cold，2 for warm
         console.log(cZone);
@@ -553,15 +573,37 @@
         console.log(cSoilType);
         console.log(ev);
 
+        //do the switch here for soiltype
+        switch(maintenanceType){
+          case'Professional':
+            maintenanceType = 1.0;
+            break;
+          case 'Premium':
+            maintenanceType =  0.8;
+            break;
+          case 'Homeowner':
+            maintenanceType = 0.6;
+            break;
+          case 'Adequate':
+            maintenanceType = 0.5;
+            break;
+          case 'Survival':
+            maintenanceType = 0.4;
+            break;
+        }
+
         console.log(pr);
         console.log(runTime);
         console.log(cpf);
         console.log(maintenanceType);
 
         //testValue = (s * ev * 5).toFixed(0);
-
+        
+        //scroll to the bottom
+        $("#info").scrollTop = $("#info").scrollHeight;
+        
         //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
-        testValue = ((pr * 60 / runTime) * ((ev * 0.5 * cpf * 1.0 * 0.8)) - (0.7 * cRainState)).toFixed(0);
+        testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
         console.log(testValue);
         $("#test").html(testValue);
 
