@@ -447,6 +447,15 @@
 
     placename = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}@2x.png').addTo(mymap);
 
+    var maintenanceType = "Adequate";
+
+    //will permanently change the style
+    $("button").on("click",function(){
+      $("button").css("background-color","#343a40");
+      $(this).css("background-color","#777");
+      maintenanceType = $(this).text().trim();
+      console.log(maintenanceType);
+    });
 
     Promise.all([
       d3.json("assets/soil.json"),
@@ -511,17 +520,6 @@
           click: clickFeature
         });
       };
-
-    //so we can call this variable later , initialize it with a value
-     var maintenanceType = "Adequate";
-
-     //will permanently change the style
-     $("button").on("click",function(){
-       $("button").css("background-color","#343a40");
-       $(this).css("background-color","#777");
-       maintenanceType = $(this).text().trim();
-       console.log(maintenanceType);
-     });
 
       function clickFeature(e) {
 
@@ -729,14 +727,61 @@
         var cRainState = rainStateFeature.feature.properties[monthName];
         ev = et.getValueAtLatLng(e.geocode.center.lat, e.geocode.center.lng).toFixed(2);
 
+        //xu's editing
+        var monthNum = $("#rainVolume option:selected").val();
+        var pr = $("input").val();
+        var runTime = $("#run").val();
+        var cpf = $("#spf").val();
+
+        switch(cZone){
+          case 'Warm':
+            cZone = 1;
+            break;
+          case 'Cold':
+            cZone = 2;
+            break;
+        }
+
         console.log(cZone);
         console.log(cRainState);
         console.log(cSoilType);
         console.log(ev);
 
-        testValue = (s * ev * 5).toFixed(0);
+        //do the switch here for soiltype
+        switch(maintenanceType){
+          case'Professional':
+            maintenanceType = 1.0;
+            break;
+          case 'Premium':
+            maintenanceType =  0.8;
+            break;
+          case 'Homeowner':
+            maintenanceType = 0.6;
+            break;
+          case 'Adequate':
+            maintenanceType = 0.5;
+            break;
+          case 'Survival':
+            maintenanceType = 0.4;
+            break;
+        }
 
+        console.log(pr);
+        console.log(runTime);
+        console.log(cpf);
+        console.log(maintenanceType);
+
+        //testValue = (s * ev * 5).toFixed(0);
+
+        //scroll to the bottom
+        var h = $(".simplebar-content-wrapper").height();
+        $(".simplebar-content-wrapper").scrollTop(h);
+
+        //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
+        testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
+        console.log(testValue);
         $("#test").html(testValue);
+
 
         chart.load({
           columns: [
