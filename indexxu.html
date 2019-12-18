@@ -78,7 +78,7 @@
           </button>
         </div>
       </div>
-      <div class="step">
+      <div class="step" a="">
         <p>Step 2: How much water does your irrigation system put out (in/hr)?<input type="number" name="runtime" min="0" value="0.6"></p>
         <p id="runtime">
           <small><i><a data-toggle="modal" data-target="#pr-modal">How to determine my preciptitation rate? <i class="pr fas fa-info-circle"></i></a></i></small>
@@ -598,10 +598,10 @@
         console.log(maintenanceType);
 
         //testValue = (s * ev * 5).toFixed(0);
-        
+
         //scroll to the bottom
         $("#info").scrollTop = $("#info").scrollHeight;
-        
+
         //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
         testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
         console.log(testValue);
