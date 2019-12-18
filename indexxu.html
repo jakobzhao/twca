@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Geovisual Analytic Platform for TWCA">
-  <meta name="author" content="Bo Zhao, Benji Antolin">
+  <meta name="author" content="Bo Zhao, Benji Antolin, Fengyu Xu">
   <title>Water Calculator</title>
   <!-- css stylesheets -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -78,7 +78,7 @@
           </button>
         </div>
       </div>
-      <div class="step" a="">
+      <div class="step">
         <p>Step 2: How much water does your irrigation system put out (in/hr)?<input type="number" name="runtime" min="0" value="0.6"></p>
         <p id="runtime">
           <small><i><a data-toggle="modal" data-target="#pr-modal">How to determine my preciptitation rate? <i class="pr fas fa-info-circle"></i></a></i></small>
@@ -600,7 +600,8 @@
         //testValue = (s * ev * 5).toFixed(0);
 
         //scroll to the bottom
-        $("#info").scrollTop = $("#info").scrollHeight;
+        var h = $(".simplebar-content-wrapper").height();
+        $(".simplebar-content-wrapper").scrollTop(h);
 
         //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
         testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
