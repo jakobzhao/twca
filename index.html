@@ -406,10 +406,8 @@
     // et: evapotranspiration
 
     var cd = new Date();
-    var month = cd.getMonth();
 
-
-    $("#rainVolume").val(month + 1);
+    $("#rainVolume").val(cd.getMonth() + 1);
 
     $("#rainVolume").on("change", function() {
       if (et!=null) {
@@ -432,18 +430,11 @@
           arrowSize: 20
         }
       ).addTo(mymap);
-
       et.on("load", analysis);
-
     });
 
     $("#rainVolume").trigger("change");
-
-
-
-
     placename = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}@2x.png').addTo(mymap);
-
 
 
     //will permanently change the style
