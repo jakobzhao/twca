@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -128,13 +129,12 @@
       </div>
       <div class="step">
         <p>Step 6: Select a location on the map via clicking on the map or entering a location on the search box on the top right corner. This version only supports locations in the contigious United States (Alaska, Hawaii are excluded.)
-          <small><a data-toggle="modal" data-target="#soilModal" style="color:red"> The result will be shown after a location is picked on the map.
-            <i class="pr fas fa-info-circle" style="color:white"></i></a></small></p>
+          <small><a data-toggle="modal" data-target="#soilModal" > <i class="pr fas fa-info-circle"></i></a></small></p>
       </div>
       <hr>
       <div class="result">
         <p class="d-flex justify-content-center">Minutes Per Irrigation&nbsp;<span id="soiltype"><span>
-        <div id="waterGauge" style="min-height: 150px"></div>
+              <div id="waterGauge" style="min-height: 150px"></div>
       </div>
 
       <div class="step">
@@ -398,7 +398,8 @@
       'Satellite': satellite
     }
 
-    var placename, soil, guage, turfZones, et, marker, s, tz, chart;
+    var placename, soil, guage, turfZones, et = null, marker, s, tz, chart;
+    // et = null;
     var maintenanceType = "Adequate";
     var soiltype = ["(Not Applicable)", "for Fine Soil", "for Mucky Soil", "for Coarse Soil"];
     var cSoilType = soiltype[0];
@@ -406,25 +407,14 @@
 
     var cd = new Date();
     var month = cd.getMonth();
-    et = L.leafletGeotiff(url = "assets/pet/M" + (month + 1).toString() + ".tif",
-      options = {
-        band: 0,
-        displayMin: 4,
-        displayMax: 22,
-        name: 'Evapotranspiration',
-        colorScale: 'viridis',
-        clampLow: false,
-        clampHigh: true,
-        // vector:true,
-        arrowSize: 20
-      }
-    ).addTo(mymap);
+
 
     $("#rainVolume").val(month + 1);
 
-    $("#rainVolume").change(function() {
-
-      mymap.removeLayer(et);
+    $("#rainVolume").on("change", function() {
+      if (et!=null) {
+        mymap.removeLayer(et);
+      }
       var month = $("#rainVolume").val();
       if (month.length == 1) {
         month = "0" + month;
@@ -442,31 +432,14 @@
           arrowSize: 20
         }
       ).addTo(mymap);
-    })
+
+      et.on("load", analysis);
+
+    });
+
+    $("#rainVolume").trigger("change");
 
 
-
-    $("#rainVolume").on("change ready", function() {
-
-      mymap.removeLayer(et);
-      var month = $("#rainVolume").val();
-      if (month.length == 1) {
-        month = "0" + month;
-      };
-      et = L.leafletGeotiff(url = "assets/pet/M" + month + ".tif",
-        options = {
-          band: 0,
-          displayMin: 4,
-          displayMax: 22,
-          name: 'Evapotranspiration',
-          colorScale: 'viridis',
-          clampLow: false,
-          clampHigh: true,
-          // vector:true,
-          arrowSize: 20
-        }
-      ).addTo(mymap);
-    })
 
 
     placename = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}@2x.png').addTo(mymap);
@@ -824,25 +797,196 @@
 
     $('.btn').on('click', function(e) {
 
+      lat = 47.674;
+      lng = -122.344;
+
+      if (!marker) {
+        marker = L.marker([lat, lng]).addTo(mymap);
+      } else {
+        marker.setLatLng([lat, lng]);
+      }
+
+
+      var cMarker = {
+        lat: lat,
+        lng: lng
+      }
+
+      var soilFeature = leafletPip.pointInLayer(cMarker, soil)[0];
+      s = soilFeature.feature.properties.class;
+
+      cSoilType = soiltype[s];
+      $("#soiltype").text(cSoilType);
+
+      var turfZoneFeature = leafletPip.pointInLayer(cMarker, turfZones)[0];
+      var cZone = turfZoneFeature.feature.properties.zoneID;
+      var monthName = $("#rainVolume option:selected").text();
+      var rainStateFeature = leafletPip.pointInLayer(cMarker, rainStates)[0];
+      var cRainState = rainStateFeature.feature.properties[monthName];
+      ev = et.getValueAtLatLng(lat, lng);
+
+      //xu's editing
+      var monthNum = $("#rainVolume option:selected").val();
+      var pr = $("input").val();
+      var runTime = $("#run").val();
+      var cpf = $("#spf").val();
+
+      switch (cZone) {
+        case 'Warm':
+          cZone = 1;
+          break;
+        case 'Cold':
+          cZone = 2;
+          break;
+      }
+
+      console.log(cZone);
+      console.log(cRainState);
+      console.log(cSoilType);
+      console.log(ev);
+
+      //do the switch here for soiltype
+      switch (maintenanceType) {
+        case 'Professional':
+          maintenanceType = 1.0;
+          break;
+        case 'Premium':
+          maintenanceType = 0.8;
+          break;
+        case 'Homeowner':
+          maintenanceType = 0.6;
+          break;
+        case 'Adequate':
+          maintenanceType = 0.5;
+          break;
+        case 'Survival':
+          maintenanceType = 0.4;
+          break;
+      }
+
+      console.log(pr);
+      console.log(runTime);
+      console.log(cpf);
+      console.log(maintenanceType);
+
+      //testValue = (s * ev * 5).toFixed(0);
+
+      //scroll to the bottom
+      var h = $(".simplebar-content-wrapper").height();
+      $(".simplebar-content-wrapper").scrollTop(h);
+
+      //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
+      testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
+      console.log(testValue);
+      $("#test").html(testValue);
+
+
       chart.load({
         columns: [
-          ['data', 0] //value of here need to be calculated right
+          ['data', testValue] //value of here need to be calculated right
         ]
       });
 
     });
 
 
-    $('#waterhr, #run, #spf, #rainVolume').on('change', function(e) {
+    $('#waterhr, #run, #spf').on('change', analysis);
+
+
+
+    function analysis() {
+
+      lat = 47.674;
+      lng = -122.344;
+
+      if (!marker) {
+        marker = L.marker([lat, lng]).addTo(mymap);
+      } else {
+        marker.setLatLng([lat, lng]);
+      }
+
+
+      var cMarker = {
+        lat: lat,
+        lng: lng
+      }
+
+      var soilFeature = leafletPip.pointInLayer(cMarker, soil)[0];
+      s = soilFeature.feature.properties.class;
+
+      cSoilType = soiltype[s];
+      $("#soiltype").text(cSoilType);
+
+      var turfZoneFeature = leafletPip.pointInLayer(cMarker, turfZones)[0];
+      var cZone = turfZoneFeature.feature.properties.zoneID;
+      var monthName = $("#rainVolume option:selected").text();
+      var rainStateFeature = leafletPip.pointInLayer(cMarker, rainStates)[0];
+      var cRainState = rainStateFeature.feature.properties[monthName];
+      ev = et.getValueAtLatLng(lat, lng);
+
+      //xu's editing
+      var monthNum = $("#rainVolume option:selected").val();
+      var pr = $("input").val();
+      var runTime = $("#run").val();
+      var cpf = $("#spf").val();
+
+      switch (cZone) {
+        case 'Warm':
+          cZone = 1;
+          break;
+        case 'Cold':
+          cZone = 2;
+          break;
+      }
+
+      console.log(cZone);
+      console.log(cRainState);
+      console.log(cSoilType);
+      console.log(ev);
+
+      //do the switch here for soiltype
+      switch (maintenanceType) {
+        case 'Professional':
+          maintenanceType = 1.0;
+          break;
+        case 'Premium':
+          maintenanceType = 0.8;
+          break;
+        case 'Homeowner':
+          maintenanceType = 0.6;
+          break;
+        case 'Adequate':
+          maintenanceType = 0.5;
+          break;
+        case 'Survival':
+          maintenanceType = 0.4;
+          break;
+      }
+
+      console.log(pr);
+      console.log(runTime);
+      console.log(cpf);
+      console.log(maintenanceType);
+
+      //testValue = (s * ev * 5).toFixed(0);
+
+      //scroll to the bottom
+      var h = $(".simplebar-content-wrapper").height();
+      $(".simplebar-content-wrapper").scrollTop(h);
+
+      //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
+      testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
+      console.log(testValue);
+      $("#test").html(testValue);
+
 
       chart.load({
         columns: [
-          ['data', 0] //value of here need to be calculated right
+          ['data', testValue] //value of here need to be calculated right
         ]
       });
 
-    });
-
+    }
 
     // $('input, select').on('change', function(e){
     //
