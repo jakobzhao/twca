@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Geovisual Analytic Platform for TWCA">
-  <meta name="author" content="Bo Zhao, Benji Antolin">
+  <meta name="author" content="Bo Zhao, Benji Antolin, Fengyu Xu">
   <title>Water Calculator</title>
   <!-- css stylesheets -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -60,7 +60,7 @@
             <img src="img/SNAP_0.4ET.bmp" class="img-thumbnail" alt="survival">
             <p>Survival</p>
           </button>
-          <button type="button" class="btn">
+          <button type="button" class="btn" style = "background-color:#777">
             <img src="img/SNAP_0.5ET.bmp" class="img-thumbnail" alt="adequate">
             <p>Adequate</p>
           </button>
@@ -101,7 +101,8 @@
         <p>Step 4: Is your turf TCWA qualified?<small><i><a data-toggle="modal" data-target="#twcaModal">&nbsp;<i class="pr fas fa-info-circle"></i></a></i></small>
           <span>
             <select id="spf" class="custom-select custom-select-sm">
-              <option value="1">Yes</option>
+              // change the value to 1.1 from 1
+              <option value="1.1">Yes</option>
               <option value="2" selected="selected">No</option>
             </select>
           </span>
@@ -141,11 +142,11 @@
       <div class="step">
         <p>
           <span><a href="https://www.tgwca.org/" target="_blank"><img width="60" height="60" src="img\logoonwhite.png" id="twcaLogo" alt="twcaLogo"></a></span>
-          <span><a href="https://turfmerchants.com" target="_blank"><img height="60" src="img\TMI-logo-New2015.jpg"></a></span>
+          <span><a href="https://turfmerchants.com" target="_blank"><img height="60" src="img\TMI-logo-New2015TRN.png"></a></span>
         </p>
-        <span><a href="https://www.pennington.com/all-products/grass-seed" target="_blank"><img src="img\pennington-logo-(minus-glow).jpg" id="penningtonLogo" class="logo-thumbnail" alt="penningtonLogo"></a></span>
-        <span><a href="http://proseedsmarketing.com/" target="_blank"><img src="img\proseeds_final.jpg" id="proseedsLogo" class="logo-thumbnail" alt="proseedsLogo"></a></span>
-        <span><a href="https://www.pureseed.com/" target="_blank"><img src="img\Pure seed.jpg" id="pureseedLogo" class="logo-thumbnail" alt="pureseedLogo"></a></span>
+        <span><a href="https://www.pennington.com/all-products/grass-seed" target="_blank"><img src="img\pennington-logo-(minus-glow)TRN.png" id="penningtonLogo" class="logo-thumbnail" alt="penningtonLogo"></a></span>
+        <span><a href="http://proseedsmarketing.com/" target="_blank"><img src="img\proseeds_finalTRN.png" id="proseedsLogo" class="logo-thumbnail" alt="proseedsLogo"></a></span>
+        <span><a href="https://www.pureseed.com/" target="_blank"><img src="img\Pure_seedTRN.png" id="pureseedLogo" class="logo-thumbnail" alt="pureseedLogo"></a></span>
       </div>
       <p style="font-size: 10pt">Supported by <a href="http://hgis.uw.edu">Humanistic GIS Lab at University of Washington - Seattle</a>, <a href="https://ceoas.oregonstate.edu/" target="_blank">College of Earth, Ocean, and Atmospheric Sciences at
           Oregon State University </a> and <a href="https://division.uaex.edu/" target="_blank">the division of agriculture, University of Arkansas</a>.</p>
@@ -446,6 +447,15 @@
 
     placename = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}@2x.png').addTo(mymap);
 
+    var maintenanceType = "Adequate";
+
+    //will permanently change the style
+    $("button").on("click",function(){
+      $("button").css("background-color","#343a40");
+      $(this).css("background-color","#777");
+      maintenanceType = $(this).text().trim();
+      console.log(maintenanceType);
+    });
 
     Promise.all([
       d3.json("assets/soil.json"),
@@ -531,17 +541,69 @@
         var monthName = $("#rainVolume option:selected").text();
         var rainStateFeature = leafletPip.pointInLayer(e.latlng, rainStates)[0];
         var cRainState = rainStateFeature.feature.properties[monthName];
-
         ev = et.getValueAtLatLng(e.latlng.lat, e.latlng.lng).toFixed(2);
 
+        //xu's editing
+        var monthNum = $("#rainVolume option:selected").val();
+        var pr = $("input").val();
+        var runTime = $("#run").val();
+        var cpf = $("#spf").val();
+      //  maintenanceType = $("button option:checked").text();
+
+        /*$("button").on("click",function(){
+          maintenanceType = $(this).text().trim();
+          console.log(maintenanceType);
+        });*/
+
+        //do the switch here for cZone
+        switch(cZone){
+          case 'Warm':
+            cZone = 1;
+            break;
+          case 'Cold':
+            cZone = 2;
+            break;
+        }
+
+        //cZone need to be changed into numbers , 1 for cold，2 for warm
         console.log(cZone);
         console.log(cRainState);
         console.log(cSoilType);
         console.log(ev);
 
+        //do the switch here for soiltype
+        switch(maintenanceType){
+          case'Professional':
+            maintenanceType = 1.0;
+            break;
+          case 'Premium':
+            maintenanceType =  0.8;
+            break;
+          case 'Homeowner':
+            maintenanceType = 0.6;
+            break;
+          case 'Adequate':
+            maintenanceType = 0.5;
+            break;
+          case 'Survival':
+            maintenanceType = 0.4;
+            break;
+        }
 
-        testValue = (s * ev * 5).toFixed(0);
+        console.log(pr);
+        console.log(runTime);
+        console.log(cpf);
+        console.log(maintenanceType);
 
+        //testValue = (s * ev * 5).toFixed(0);
+
+        //scroll to the bottom
+        var h = $(".simplebar-content-wrapper").height();
+        $(".simplebar-content-wrapper").scrollTop(h);
+
+        //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
+        testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
+        console.log(testValue);
         $("#test").html(testValue);
 
         chart.load({
@@ -663,21 +725,67 @@
         var monthName = $("#rainVolume option:selected").text();
         var rainStateFeature = leafletPip.pointInLayer(e.geocode.center, rainStates)[0];
         var cRainState = rainStateFeature.feature.properties[monthName];
-
         ev = et.getValueAtLatLng(e.geocode.center.lat, e.geocode.center.lng).toFixed(2);
+
+        //xu's editing
+        var monthNum = $("#rainVolume option:selected").val();
+        var pr = $("input").val();
+        var runTime = $("#run").val();
+        var cpf = $("#spf").val();
+
+        switch(cZone){
+          case 'Warm':
+            cZone = 1;
+            break;
+          case 'Cold':
+            cZone = 2;
+            break;
+        }
 
         console.log(cZone);
         console.log(cRainState);
         console.log(cSoilType);
         console.log(ev);
 
-        testValue = (s * ev * 5).toFixed(0);
+        //do the switch here for soiltype
+        switch(maintenanceType){
+          case'Professional':
+            maintenanceType = 1.0;
+            break;
+          case 'Premium':
+            maintenanceType =  0.8;
+            break;
+          case 'Homeowner':
+            maintenanceType = 0.6;
+            break;
+          case 'Adequate':
+            maintenanceType = 0.5;
+            break;
+          case 'Survival':
+            maintenanceType = 0.4;
+            break;
+        }
 
+        console.log(pr);
+        console.log(runTime);
+        console.log(cpf);
+        console.log(maintenanceType);
+
+        //testValue = (s * ev * 5).toFixed(0);
+
+        //scroll to the bottom
+        var h = $(".simplebar-content-wrapper").height();
+        $(".simplebar-content-wrapper").scrollTop(h);
+
+        //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
+        testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
+        console.log(testValue);
         $("#test").html(testValue);
+
 
         chart.load({
           columns: [
-            ['data', testValue]
+            ['data', testValue]  //value of here need to be calculated right
           ]
         });
 
