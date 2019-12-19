@@ -646,16 +646,7 @@
           columns: [
             ['data', 0]
           ],
-          type: 'gauge',
-          // onclick: function(d, i) {
-          //   console.log("onclick", d, i);
-          // },
-          // onmouseover: function(d, i) {
-          //   console.log("onmouseover", d, i);
-          // },
-          // onmouseout: function(d, i) {
-          //   console.log("onmouseout", d, i);
-          // }
+          type: 'gauge'
         },
         legend: {
           show: false
@@ -785,11 +776,6 @@
           ]
         });
 
-        // mymap.fitBounds([
-        //   [56.73, -135.48],
-        //   [18.97, -67.35]
-        // ]);
-
       })
       .addTo(mymap);
 
@@ -875,7 +861,6 @@
       var h = $(".simplebar-content-wrapper").height();
       $(".simplebar-content-wrapper").scrollTop(h);
 
-      //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
       testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
       console.log(testValue);
       $("#test").html(testValue);
@@ -988,96 +973,6 @@
 
     }
 
-    // $('input, select').on('change', function(e){
-    //
-    //   lat = 47.674;
-    //   lng = -122.344;
-    //
-    //   if (!marker) {
-    //     marker = L.marker([lat, lng]).addTo(mymap);
-    //   } else {
-    //     marker.setLatLng([lat, lng]);
-    //   }
-    //
-    //
-    //   var cMarker = {lat: lat, lng: lng}
-    //
-    //   var soilFeature = leafletPip.pointInLayer(cMarker, soil)[0];
-    //   s = soilFeature.feature.properties.class;
-    //
-    //   cSoilType = soiltype[s];
-    //   $("#soiltype").text(cSoilType);
-    //
-    //   var turfZoneFeature = leafletPip.pointInLayer(cMarker, turfZones)[0];
-    //   var cZone = turfZoneFeature.feature.properties.zoneID;
-    //   var monthName = $("#rainVolume option:selected").text();
-    //   var rainStateFeature = leafletPip.pointInLayer(cMarker, rainStates)[0];
-    //   var cRainState = rainStateFeature.feature.properties[monthName];
-    //   ev = et.getValueAtLatLng(lat, lng).toFixed(2);
-    //
-    //   //xu's editing
-    //   var monthNum = $("#rainVolume option:selected").val();
-    //   var pr = $("input").val();
-    //   var runTime = $("#run").val();
-    //   var cpf = $("#spf").val();
-    //
-    //   switch(cZone){
-    //     case 'Warm':
-    //       cZone = 1;
-    //       break;
-    //     case 'Cold':
-    //       cZone = 2;
-    //       break;
-    //   }
-    //
-    //   console.log(cZone);
-    //   console.log(cRainState);
-    //   console.log(cSoilType);
-    //   console.log(ev);
-    //
-    //   //do the switch here for soiltype
-    //   switch(maintenanceType){
-    //     case'Professional':
-    //       maintenanceType = 1.0;
-    //       break;
-    //     case 'Premium':
-    //       maintenanceType =  0.8;
-    //       break;
-    //     case 'Homeowner':
-    //       maintenanceType = 0.6;
-    //       break;
-    //     case 'Adequate':
-    //       maintenanceType = 0.5;
-    //       break;
-    //     case 'Survival':
-    //       maintenanceType = 0.4;
-    //       break;
-    //   }
-    //
-    //   console.log(pr);
-    //   console.log(runTime);
-    //   console.log(cpf);
-    //   console.log(maintenanceType);
-    //
-    //   //testValue = (s * ev * 5).toFixed(0);
-    //
-    //   //scroll to the bottom
-    //   var h = $(".simplebar-content-wrapper").height();
-    //   $(".simplebar-content-wrapper").scrollTop(h);
-    //
-    //   //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
-    //   testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
-    //   console.log(testValue);
-    //   $("#test").html(testValue);
-    //
-    //
-    //   chart.load({
-    //     columns: [
-    //       ['data', testValue]  //value of here need to be calculated right
-    //     ]
-    //   });
-    //
-    // });
   </script>
 </body>
 
