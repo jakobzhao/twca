@@ -756,7 +756,7 @@
         $(".simplebar-content-wrapper").scrollTop(h);
 
         //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
-        testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
+        testValue = ((pr * 60 / runTime) * ((ev / 4.0 * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
         console.log(testValue);
         $("#test").html(testValue);
 
@@ -856,7 +856,7 @@
       // $(".simplebar-content-wrapper").scrollTop(h);
 
       //testValue = ((pr * 60 / runTime) * ((ev * cropcoefficient * cpf * 1.0 * maintenacefactor for soil)) - (0.7 * cRainState)).toFixed(0);
-      testValue = ((pr * 60 / runTime) * ((ev * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
+      testValue = ((pr * 60 / runTime) * ((ev / 4.0  * cZone * cpf * 1.0 * maintenanceType)) - (0.7 * cRainState)).toFixed(0);
       console.log(testValue);
       $("#test").html(testValue);
 
